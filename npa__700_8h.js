@@ -3,6 +3,7 @@ var npa__700_8h =
     [ "NPA_ERR_IMPL", "group___n_p_a-700.html#gac558fabed12b27ab486487883f8d22dd", null ],
     [ "NPA_ERR_NACK", "group___n_p_a-700.html#gab7ffcaa94811108f819e5e4a05162b9b", null ],
     [ "NPA_ERR_NULL", "group___n_p_a-700.html#ga86146b723e295a59845314a65f96f32f", null ],
+    [ "NPA_ERR_PARAM", "group___n_p_a-700.html#ga68a01657edc6a6be3d68324f36da82c2", null ],
     [ "NPA_ERR_TOUT", "group___n_p_a-700.html#ga5c95ce1e8787e7d57da7d2f8176a82c4", null ],
     [ "NPA_SUCCESS", "group___n_p_a-700.html#ga087892ab6cc489c0634f8acdfb7550fe", null ],
     [ "NPA_WARN_OLD", "group___n_p_a-700.html#ga5fff8738d0b3102eb7c5c3c518a1b77b", null ],
