@@ -27,29 +27,54 @@
 /**
  * @brief Error code from NPA 700 driver.
  *
- * Negative values are fatal errors, positive values are warnings.
+ * Values with most significant bit set (0x80) are fatal, others are warnings.
  *
  * Value | Meaning
  * ---------------
  * 0     | Success.
- * -1    | Error: I2C interface function returned NACK.
- * -2    | Error: I2C interface function timed out.
- * -4    | Error: NULL pointer supplied.
- * -8    | Error: Function is not implemented.
- * -16   | Error: Invalid parameter.
+ * 129   | Error: I2C interface function returned NACK.
+ * 130   | Error: I2C interface function timed out.
+ * 132   | Error: NULL pointer supplied.
+ * 136   | Error: Function is not implemented.
+ * 144   | Error: Invalid parameter.
+ * 170   | Error: Sensor is in configuration mode.
+ * 192   | Error: Internal error in sensor.
  * 1     | Warning: Value is saturated.
  * 2     | Warning: Value is already read.
  */
-typedef int8_t npa_ret_t;
+typedef uint8_t npa_ret_t;
 
-#define NPA_SUCCESS   (0)  //!< Operation was successful.
-#define NPA_ERR_NACK  (-1) //!< I2C interface did not acknowledge.
-#define NPA_ERR_TOUT  (-2) //!< I2C interface timed out.
-#define NPA_ERR_NULL  (-4) //!< NULL pointer supplied. 
-#define NPA_ERR_IMPL  (-8) //!< Function is not implemented.
-#define NPA_ERR_PARAM (-8) //!< Invalid parameter. 
-#define NPA_WARN_SAT  (1)  //!< Value is saturated.
-#define NPA_WARN_OLD  (2)  //!< Value was already read, not updated.
+#define NPA_SUCCESS      (0U)   //!< Operation was successful.
+#define NPA_ERR_FATAL    (128U)  //!< Fatal error code, last bit set. 
+#define NPA_ERR_NACK     (NPA_ERR_FATAL + 1U)  //!< I2C interface did not acknowledge.
+#define NPA_ERR_TOUT     (NPA_ERR_FATAL + 2U)  //!< I2C interface timed out.
+#define NPA_ERR_NULL     (NPA_ERR_FATAL + 4U)  //!< NULL pointer supplied. 
+#define NPA_ERR_IMPL     (NPA_ERR_FATAL + 8U)  //!< Function is not implemented.
+#define NPA_ERR_PARAM    (NPA_ERR_FATAL + 16U) //!< Invalid parameter. 
+#define NPA_ERR_MODE     (NPA_ERR_FATAL + 32U) //!< Invalid mode. 
+#define NPA_ERR_INTERNAL (NPA_ERR_FATAL)       //!< Internal error.
+#define NPA_WARN_SAT     (1U)   //!< Value is saturated.
+#define NPA_WARN_OLD     (2U)   //!< Value was already read, not updated.
+
+/*
+ * Pressure can be calculated from the sensor output using the following formula:
+ *
+ * P = Pmin + (OUT - OUTmin) / (OUTmax - OUTmin) * (Pmax - Pmin)
+ */
+
+#define NPA_PRES_MAX_NONSAT (14745U) //!< Maximum non-saturated pressure counts.
+#define NPA_PRES_MAX_SAT    (16383U) //!< Maximum saturated pressure counts.
+#define NPA_PRES_MIN_NONSAT (1638U)  //!< Minimum non-saturated pressure counts.
+#define NPA_PRES_MIN_SAT    (0U)     //!< Minimum saturated pressure counts.
+#define NPA_PRES_MIDDLE     (8192U)  //!< Middle pressure, 0-level.
+
+#define NPA_02WD_SCALE_PA   (500U)    //!< Maximum scale of NPA_02WD
+#define NPA_05WD_SCALE_PA   (1250U)   //!< Maximum scale of NPA_05WD
+#define NPA_10WD_SCALE_PA   (2490U)   //!< Maximum scale of NPA_10WD
+#define NPA_001D_SCALE_PA   (6890U)   //!< Maximum scale of NPA_001D
+#define NPA_005D_SCALE_PA   (34470U)  //!< Maximum scale of NPA_005D
+#define NPA_015D_SCALE_PA   (103420U) //!< Maximum scale of NPA_015D
+#define NPA_030D_SCALE_PA   (206840U) //!< Maximum scale of NPA_030D
 
 /**
  * @brief Write data to NPA-700.
