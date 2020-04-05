@@ -149,14 +149,16 @@ static npa_ret_t parse_value (const npa_variant_t model, const uint8_t * const r
                               float * const pressure_pa)
 {
     npa_ret_t ret_code = NPA_SUCCESS;
-    // Mask status bits out
-    const uint16_t OUT_U16 = ( (raw_data[0U] << 8U) + raw_data[1U]) & 0x3FFFU;
+    // Mask status bits out.
+    const uint16_t OUT_U16 = ( ( (uint32_t) raw_data[0U] << 8U)
+                               + (uint32_t) raw_data[1U])
+                             & 0x3FFFU;
     // Use floats in calculation
     float Pmin = 0.0F;
     float Pmax = 0.0F;
-    const float OUTmax = NPA_PRES_MAX_NONSAT;
-    const float OUTmin = NPA_PRES_MIN_NONSAT;
-    const float OUT = OUT_U16;
+    const float OUTmax = (float) NPA_PRES_MAX_NONSAT;
+    const float OUTmin = (float) NPA_PRES_MIN_NONSAT;
+    const float OUT = (float) OUT_U16;
 
     if (check_saturation (OUT_U16))
     {
