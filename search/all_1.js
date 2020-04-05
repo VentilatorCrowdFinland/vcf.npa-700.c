@@ -36,7 +36,7 @@ var searchData=
   ['npa_5fread_5fpressure',['npa_read_pressure',['../group___n_p_a-700.html#gaae6c9c769f5456456288c0abc860c03e',1,'npa_700.c']]],
   ['npa_5fread_5fpressure_5ftemp_5fhires',['npa_read_pressure_temp_hires',['../group___n_p_a-700.html#ga3cbcfcba5e5364e38ed17bac3c30afa1',1,'npa_700.c']]],
   ['npa_5fread_5fpressure_5ftemp_5flowres',['npa_read_pressure_temp_lowres',['../group___n_p_a-700.html#ga096f850a30db7b17087ed03d6112044d',1,'npa_700.c']]],
-  ['npa_5fret_5ft',['npa_ret_t',['../group___n_p_a-700.html#ga1017ffccfc86ec12f263bc61f7ac3ce7',1,'npa_700.h']]],
+  ['npa_5fret_5ft',['npa_ret_t',['../group___n_p_a-700.html#ga7cbc24db74747781c452a06c67014dcd',1,'npa_700.h']]],
   ['npa_5fsample_5ftrigger',['npa_sample_trigger',['../group___n_p_a-700.html#ga5e7c2789da43a8632b63f06883d228e3',1,'npa_700.c']]],
   ['npa_5fsuccess',['NPA_SUCCESS',['../group___n_p_a-700.html#ga087892ab6cc489c0634f8acdfb7550fe',1,'npa_700.h']]],
   ['npa_5fvariant_5ft',['npa_variant_t',['../group___n_p_a-700.html#ga8c69e63416587e072c507576ef141b77',1,'npa_700.h']]],

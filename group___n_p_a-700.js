@@ -32,7 +32,7 @@ var group___n_p_a_700 =
     [ "NPA_WARN_OLD", "group___n_p_a-700.html#ga5fff8738d0b3102eb7c5c3c518a1b77b", null ],
     [ "NPA_WARN_SAT", "group___n_p_a-700.html#ga5c062b1de6c294285159f1b003e8496b", null ],
     [ "npa_read_fp", "group___n_p_a-700.html#ga3b86fe91590bbb410782017be8297e53", null ],
-    [ "npa_ret_t", "group___n_p_a-700.html#ga1017ffccfc86ec12f263bc61f7ac3ce7", null ],
+    [ "npa_ret_t", "group___n_p_a-700.html#ga7cbc24db74747781c452a06c67014dcd", null ],
     [ "npa_write_fp", "group___n_p_a-700.html#ga25010306f834b22aeadbd1a3b0073fd3", null ],
     [ "npa_variant_t", "group___n_p_a-700.html#ga8c69e63416587e072c507576ef141b77", [
       [ "NPA_700_02WD", "group___n_p_a-700.html#gga8c69e63416587e072c507576ef141b77a13138ad0834eea7dd8c501ab1c246e9e", null ],
