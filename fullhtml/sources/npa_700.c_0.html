@@ -213,34 +213,39 @@
 <a name="ln200">{</a>
 <a name="ln201">    npa_ret_t ret_code = npa_ctx_check (sensor);</a>
 <a name="ln202"> </a>
-<a name="ln203">    if (NPA_SUCCESS == ret_code)</a>
+<a name="ln203">    if (NULL == pressure_pa)</a>
 <a name="ln204">    {</a>
-<a name="ln205">        // Initialize raw data as alll bits set, as it sets internal error code on</a>
-<a name="ln206">        // by default.</a>
-<a name="ln207">        uint8_t raw_data[2] = { 0xFF, 0xFF };</a>
-<a name="ln208">        ret_code |= sensor-&gt;read (sensor-&gt;npa_addr, raw_data, 2);</a>
-<a name="ln209">        ret_code |= parse_status (raw_data[0]);</a>
-<a name="ln210">        ret_code |= parse_value (sensor-&gt;model, raw_data, pressure_pa);</a>
-<a name="ln211">    }</a>
-<a name="ln212"> </a>
-<a name="ln213">    return ret_code;</a>
-<a name="ln214">}</a>
-<a name="ln215"> </a>
-<a name="ln216">npa_ret_t npa_read_pressure_temp_lowres (const npa_ctx_t * const sensor,</a>
-<a name="ln217">        float * const pressure_pa,</a>
-<a name="ln218">        float * const temperature_c)</a>
-<a name="ln219">{</a>
-<a name="ln220">    return NPA_ERR_IMPL;</a>
-<a name="ln221">}</a>
-<a name="ln222"> </a>
-<a name="ln223">npa_ret_t npa_read_pressure_temp_hires (const npa_ctx_t * const sensor,</a>
-<a name="ln224">                                        float * const pressure_pa,</a>
-<a name="ln225">                                        float * const temperature_c)</a>
-<a name="ln226">{</a>
-<a name="ln227">    return NPA_ERR_IMPL;</a>
-<a name="ln228">}</a>
-<a name="ln229"> </a>
-<a name="ln230">/** @} */</a>
+<a name="ln205">        ret_code |= NPA_ERR_NULL;</a>
+<a name="ln206">    }</a>
+<a name="ln207"> </a>
+<a name="ln208">    if (NPA_SUCCESS == ret_code)</a>
+<a name="ln209">    {</a>
+<a name="ln210">        // Initialize raw data as alll bits set, as it sets internal error code on</a>
+<a name="ln211">        // by default.</a>
+<a name="ln212">        uint8_t raw_data[2] = { 0xFF, 0xFF };</a>
+<a name="ln213">        ret_code |= sensor-&gt;read (sensor-&gt;npa_addr, raw_data, 2);</a>
+<a name="ln214">        ret_code |= parse_status (raw_data[0]);</a>
+<a name="ln215">        ret_code |= parse_value (sensor-&gt;model, raw_data, pressure_pa);</a>
+<a name="ln216">    }</a>
+<a name="ln217"> </a>
+<a name="ln218">    return ret_code;</a>
+<a name="ln219">}</a>
+<a name="ln220"> </a>
+<a name="ln221">npa_ret_t npa_read_pressure_temp_lowres (const npa_ctx_t * const sensor,</a>
+<a name="ln222">        float * const pressure_pa,</a>
+<a name="ln223">        float * const temperature_c)</a>
+<a name="ln224">{</a>
+<a name="ln225">    return NPA_ERR_IMPL;</a>
+<a name="ln226">}</a>
+<a name="ln227"> </a>
+<a name="ln228">npa_ret_t npa_read_pressure_temp_hires (const npa_ctx_t * const sensor,</a>
+<a name="ln229">                                        float * const pressure_pa,</a>
+<a name="ln230">                                        float * const temperature_c)</a>
+<a name="ln231">{</a>
+<a name="ln232">    return NPA_ERR_IMPL;</a>
+<a name="ln233">}</a>
+<a name="ln234"> </a>
+<a name="ln235">/** @} */</a>
 
 </code></pre>
 <div class="balloon" rel="32"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> The value of the '((128U) + 4U)' expression should not be converted to the narrower essential 'unsigned' type.</p></div>
@@ -284,12 +289,13 @@
 <div class="balloon" rel="155"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> The value of the '(1638U)' expression should not be converted from the essential 'unsigned' type to the essential 'floating' type.</p></div>
 <div class="balloon" rel="156"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> The value of the 'OUT_U16' expression should not be converted from the essential 'unsigned' type to the essential 'floating' type.</p></div>
 <div class="balloon" rel="160"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> The value of the '(1U)' expression should not be converted to the narrower essential 'unsigned' type.</p></div>
-<div class="balloon" rel="216"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'pressure_pa'.</p></div>
-<div class="balloon" rel="216"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'sensor'.</p></div>
-<div class="balloon" rel="216"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'temperature_c'.</p></div>
-<div class="balloon" rel="223"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'pressure_pa'.</p></div>
-<div class="balloon" rel="223"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'sensor'.</p></div>
-<div class="balloon" rel="223"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'temperature_c'.</p></div>
+<div class="balloon" rel="205"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> The value of the '((128U) + 4U)' expression should not be converted to the narrower essential 'unsigned' type.</p></div>
+<div class="balloon" rel="221"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'pressure_pa'.</p></div>
+<div class="balloon" rel="221"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'sensor'.</p></div>
+<div class="balloon" rel="221"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'temperature_c'.</p></div>
+<div class="balloon" rel="228"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'pressure_pa'.</p></div>
+<div class="balloon" rel="228"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'sensor'.</p></div>
+<div class="balloon" rel="228"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'temperature_c'.</p></div>
 
 <link rel="stylesheet" href="highlight.css">
 <script src="highlight.pack.js"></script>
