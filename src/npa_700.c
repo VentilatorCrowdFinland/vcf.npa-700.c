@@ -50,23 +50,23 @@ static npa_ret_t npa_ctx_check (const npa_ctx_t * const sensor)
 static npa_ret_t parse_status (const uint8_t data)
 {
     npa_ret_t ret_code = NPA_SUCCESS;
-    uint8_t status_bits = data >> 6;
+    uint8_t status_bits = data >> 6U;
 
     switch (status_bits)
     {
-        case 0:
+        case 0U:
             // No action needed
             break;
 
-        case 1:
+        case 1U:
             // Configuration not supported by this driver, configuration mode is always error.
             ret_code |= NPA_ERR_MODE;
             break;
 
-        case 2:
+        case 2U:
             ret_code |= NPA_WARN_OLD;
 
-        case 3:
+        case 3U:
         default:
             ret_code |= NPA_ERR_FATAL;
     }
@@ -102,37 +102,37 @@ static npa_ret_t get_scaling (const npa_variant_t model, float * const Pmax,
     {
         case NPA_700_02WD:
             *Pmax = NPA_02WD_SCALE_PA;
-            *Pmin = -1.0f * NPA_02WD_SCALE_PA;
+            *Pmin = -1.0F * NPA_02WD_SCALE_PA;
             break;
 
         case NPA_700_05WD:
             *Pmax = NPA_05WD_SCALE_PA;
-            *Pmin = -1.0f * NPA_05WD_SCALE_PA;
+            *Pmin = -1.0F * NPA_05WD_SCALE_PA;
             break;
 
         case NPA_700_10WD:
             *Pmax = NPA_10WD_SCALE_PA;
-            *Pmin = -1.0f * NPA_10WD_SCALE_PA;
+            *Pmin = -1.0F * NPA_10WD_SCALE_PA;
             break;
 
         case NPA_700_001D:
             *Pmax = NPA_001D_SCALE_PA;
-            *Pmin = -1.0f * NPA_001D_SCALE_PA;
+            *Pmin = -1.0F * NPA_001D_SCALE_PA;
             break;
 
         case NPA_700_005D:
             *Pmax = NPA_005D_SCALE_PA;
-            *Pmin = -1.0f * NPA_005D_SCALE_PA;
+            *Pmin = -1.0F * NPA_005D_SCALE_PA;
             break;
 
         case NPA_700_015D:
             *Pmax = NPA_015D_SCALE_PA;
-            *Pmin = -1.0f * NPA_015D_SCALE_PA;
+            *Pmin = -1.0F * NPA_015D_SCALE_PA;
             break;
 
         case NPA_700_030D:
             *Pmax = NPA_030D_SCALE_PA;
-            *Pmin = -1.0f * NPA_030D_SCALE_PA;
+            *Pmin = -1.0F * NPA_030D_SCALE_PA;
             break;
 
         default:
@@ -147,10 +147,10 @@ static npa_ret_t parse_value (const npa_variant_t model, const uint8_t * const r
 {
     npa_ret_t ret_code = NPA_SUCCESS;
     // Mask status bits out
-    const uint16_t OUT_U16 = ( (raw_data[0] << 8) + raw_data[1]) & 0x3FFF;
+    const uint16_t OUT_U16 = ( (raw_data[0U] << 8U) + raw_data[1U]) & 0x3FFFU;
     // Use floats in calculation
-    float Pmin = 0;
-    float Pmax = 0;
+    float Pmin = 0.0F;
+    float Pmax = 0.0F;
     const float OUTmax = NPA_PRES_MAX_NONSAT;
     const float OUTmin = NPA_PRES_MIN_NONSAT;
     const float OUT = OUT_U16;
@@ -189,7 +189,7 @@ npa_ret_t npa_sample_trigger (const npa_ctx_t * const sensor)
 
         - Application guide p.15
         */
-        ret_code |= sensor->read (sensor->npa_addr, NULL, 0);
+        ret_code |= sensor->read (sensor->npa_addr, NULL, 0U);
     }
 
     return ret_code;
@@ -207,11 +207,11 @@ npa_ret_t npa_read_pressure (const npa_ctx_t * const sensor,
 
     if (NPA_SUCCESS == ret_code)
     {
-        // Initialize raw data as alll bits set, as it sets internal error code on
+        // Initialize raw data as all bits set, as it sets internal error code on
         // by default.
-        uint8_t raw_data[2] = { 0xFF, 0xFF };
-        ret_code |= sensor->read (sensor->npa_addr, raw_data, 2);
-        ret_code |= parse_status (raw_data[0]);
+        uint8_t raw_data[2U] = { 0xFFU, 0xFFU };
+        ret_code |= sensor->read (sensor->npa_addr, raw_data, sizeof (raw_data));
+        ret_code |= parse_status (raw_data[0U]);
         ret_code |= parse_value (sensor->model, raw_data, pressure_pa);
     }
 
