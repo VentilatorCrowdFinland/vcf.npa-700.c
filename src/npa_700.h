@@ -115,7 +115,7 @@ typedef struct
  * @param[in] sensor Sensor to trigger.
  * @return @ref npa_ret_t.
  */
-npa_ret_t npa_read_trigger (const npa_ctx_t * const sensor);
+npa_ret_t npa_sample_trigger (const npa_ctx_t * const sensor);
 
 /**
  * @brief Read pressure from sensor.

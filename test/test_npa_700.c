@@ -41,11 +41,11 @@ void tearDown (void)
 
 void test_npa_700_null (void)
 {
-    npa_ret_t ret_code = npa_read_trigger (NULL);
+    npa_ret_t ret_code = npa_sample_trigger (NULL);
     TEST_ASSERT (NPA_ERR_NULL == ret_code);
-    ret_code = npa_read_trigger (&m_sensor_write_null);
+    ret_code = npa_sample_trigger (&m_sensor_write_null);
     TEST_ASSERT (NPA_ERR_NULL == ret_code);
-    ret_code = npa_read_trigger (&m_sensor_read_null);
+    ret_code = npa_sample_trigger (&m_sensor_read_null);
     TEST_ASSERT (NPA_ERR_NULL == ret_code);
 }
 
@@ -57,7 +57,12 @@ void test_npa_700_null (void)
  * @param[in] sensor Sensor to trigger.
  * @return @ref npa_ret_t.
  */
-npa_ret_t npa_read_trigger (const npa_ctx_t * const sensor);
+void test_npa_700_sample_trigger (void)
+{
+    i2c_read_ExpectAndReturn (NPA_ADDR, NULL, 0, NPA_SUCCESS);
+    npa_ret_t ret_code = npa_sample_trigger (&m_sensor_valid);
+    TEST_ASSERT (NPA_SUCCESS == ret_code);
+}
 
 /**
  * @brief Read pressure from sensor.
