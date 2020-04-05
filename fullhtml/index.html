@@ -36,10 +36,11 @@
   </div>
 
   <table cellpadding="0" cellspacing="0" border="0" class="infotopic">
-     <tr><th id="col_info">Date:</th><td>Sun Apr  5 15:43:19 2020</td></tr>
+     <tr><th id="col_info">Date:</th><td>Sun Apr  5 20:18:27 2020</td></tr>
      <tr><th id="col_info">PVS-Studio Version:</th><td>7.06.37052.34</td></tr>
      <tr><th id="col_info">Command Line:</th><td>plog-converter -a GA\:1,2,3\;OP\:1,2,3\;CS\:1,2,3\;MISRA\:1,2,3 -t fullhtml src/npa_700.o.PVS-Studio.log -o ./doxygen/html </td></tr>
-     <tr><th id="col_info">Total Warnings (MISRA):</th><td>16</td></tr>
+     <tr><th id="col_info">Total Warnings (GA):</th><td>1</td></tr>
+     <tr><th id="col_info">Total Warnings (MISRA):</th><td>46</td></tr>
   </table>
   <table cellpadding="0" cellspacing="0" border="0" class="sortable" id="sorter">
     <tr>
@@ -51,112 +52,329 @@
     </tr>
     <tr>
       <td id="col_group">MISRA</td>
-      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln31">npa_700.c:31</a></td>
-      <td id="col_level" style="color:#FFA500"><b>Medium</b></td>
-      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2544/">V2544</td>
-      <td id="col_message">The left and right operands of the '|=' operator should not have essential 'character' and 'signed' types respectively. Consider inspecting operands: left - 'ret_code', right - '(- 4)'</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln32">npa_700.c:32</a></td>
+      <td id="col_level" style="color:#CACA00"><b>Low</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2572/">V2572</td>
+      <td id="col_message">The value of the '((128U) + 4U)' expression should not be converted to the narrower essential 'unsigned' type.</td>
     </tr>
     <tr>
       <td id="col_group">MISRA</td>
-      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln31">npa_700.c:31</a></td>
-      <td id="col_level" style="color:#FFA500"><b>Medium</b></td>
-      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2568/">V2568</td>
-      <td id="col_message">Both operands of the '|=' operator should have the same essential type. The current types are: 'character' and 'signed'.</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln36">npa_700.c:36</a></td>
+      <td id="col_level" style="color:#CACA00"><b>Low</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2572/">V2572</td>
+      <td id="col_message">The value of the '((128U) + 4U)' expression should not be converted to the narrower essential 'unsigned' type.</td>
     </tr>
     <tr>
       <td id="col_group">MISRA</td>
-      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln35">npa_700.c:35</a></td>
-      <td id="col_level" style="color:#FFA500"><b>Medium</b></td>
-      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2544/">V2544</td>
-      <td id="col_message">The left and right operands of the '|=' operator should not have essential 'character' and 'signed' types respectively. Consider inspecting operands: left - 'ret_code', right - '(- 4)'</td>
-    </tr>
-    <tr>
-      <td id="col_group">MISRA</td>
-      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln35">npa_700.c:35</a></td>
-      <td id="col_level" style="color:#FFA500"><b>Medium</b></td>
-      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2568/">V2568</td>
-      <td id="col_message">Both operands of the '|=' operator should have the same essential type. The current types are: 'character' and 'signed'.</td>
-    </tr>
-    <tr>
-      <td id="col_group">MISRA</td>
-      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln39">npa_700.c:39</a></td>
-      <td id="col_level" style="color:#FFA500"><b>Medium</b></td>
-      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2544/">V2544</td>
-      <td id="col_message">The left and right operands of the '|=' operator should not have essential 'character' and 'signed' types respectively. Consider inspecting operands: left - 'ret_code', right - '(- 4)'</td>
-    </tr>
-    <tr>
-      <td id="col_group">MISRA</td>
-      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln39">npa_700.c:39</a></td>
-      <td id="col_level" style="color:#FFA500"><b>Medium</b></td>
-      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2568/">V2568</td>
-      <td id="col_message">Both operands of the '|=' operator should have the same essential type. The current types are: 'character' and 'signed'.</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln40">npa_700.c:40</a></td>
+      <td id="col_level" style="color:#CACA00"><b>Low</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2572/">V2572</td>
+      <td id="col_message">The value of the '((128U) + 4U)' expression should not be converted to the narrower essential 'unsigned' type.</td>
     </tr>
     <tr>
       <td id="col_group">MISRA</td>
       <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln53">npa_700.c:53</a></td>
+      <td id="col_level" style="color:#CACA00"><b>Low</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2572/">V2572</td>
+      <td id="col_message">The value of the 'data &gt;&gt; 6' expression should not be converted from the essential 'signed' type to the essential 'unsigned' type.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln63">npa_700.c:63</a></td>
+      <td id="col_level" style="color:#CACA00"><b>Low</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2572/">V2572</td>
+      <td id="col_message">The value of the '((128U) + 32U)' expression should not be converted to the narrower essential 'unsigned' type.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln67">npa_700.c:67</a></td>
+      <td id="col_level" style="color:#CACA00"><b>Low</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2572/">V2572</td>
+      <td id="col_message">The value of the '(2U)' expression should not be converted to the narrower essential 'unsigned' type.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln71">npa_700.c:71</a></td>
+      <td id="col_level" style="color:#CACA00"><b>Low</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2572/">V2572</td>
+      <td id="col_message">The value of the '(128U)' expression should not be converted to the narrower essential 'unsigned' type.</td>
+    </tr>
+    <tr>
+      <td id="col_group">General Analysis</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln67">npa_700.c:67</a></td>
+      <td id="col_level" style="color:#CACA00"><b>Low</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v796/">V796</td>
+      <td id="col_message">It is possible that 'break' statement is missing in switch statement.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln55">npa_700.c:55</a></td>
+      <td id="col_level" style="color:#FFA500"><b>Medium</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2520/">V2520</td>
+      <td id="col_message">Every switch-clause should be terminated by an unconditional 'break' statement.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln84">npa_700.c:84</a></td>
       <td id="col_level" style="color:#FFA500"><b>Medium</b></td>
       <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2568/">V2568</td>
-      <td id="col_message">Both operands of the '==' operator should have the same essential type. The current types are: 'signed' and 'character'.</td>
+      <td id="col_message">Both operands of the '=' operator should have the same essential type. The current types are: 'Boolean' and 'signed'.</td>
     </tr>
     <tr>
       <td id="col_group">MISRA</td>
-      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln68">npa_700.c:68</a></td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln89">npa_700.c:89</a></td>
+      <td id="col_level" style="color:#FFA500"><b>Medium</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2568/">V2568</td>
+      <td id="col_message">Both operands of the '=' operator should have the same essential type. The current types are: 'Boolean' and 'signed'.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln104">npa_700.c:104</a></td>
+      <td id="col_level" style="color:#CACA00"><b>Low</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2572/">V2572</td>
+      <td id="col_message">The value of the '(500U)' expression should not be converted from the essential 'unsigned' type to the essential 'floating' type.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln104">npa_700.c:104</a></td>
+      <td id="col_level" style="color:#FFA500"><b>Medium</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2568/">V2568</td>
+      <td id="col_message">Both operands of the '=' operator should have the same essential type. The current types are: 'floating' and 'unsigned'.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln105">npa_700.c:105</a></td>
+      <td id="col_level" style="color:#FFA500"><b>Medium</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2568/">V2568</td>
+      <td id="col_message">Both operands of the '*' operator should have the same essential type. The current types are: 'floating' and 'unsigned'.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln109">npa_700.c:109</a></td>
+      <td id="col_level" style="color:#CACA00"><b>Low</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2572/">V2572</td>
+      <td id="col_message">The value of the '(1250U)' expression should not be converted from the essential 'unsigned' type to the essential 'floating' type.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln109">npa_700.c:109</a></td>
+      <td id="col_level" style="color:#FFA500"><b>Medium</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2568/">V2568</td>
+      <td id="col_message">Both operands of the '=' operator should have the same essential type. The current types are: 'floating' and 'unsigned'.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln110">npa_700.c:110</a></td>
+      <td id="col_level" style="color:#FFA500"><b>Medium</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2568/">V2568</td>
+      <td id="col_message">Both operands of the '*' operator should have the same essential type. The current types are: 'floating' and 'unsigned'.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln114">npa_700.c:114</a></td>
+      <td id="col_level" style="color:#CACA00"><b>Low</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2572/">V2572</td>
+      <td id="col_message">The value of the '(2490U)' expression should not be converted from the essential 'unsigned' type to the essential 'floating' type.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln114">npa_700.c:114</a></td>
+      <td id="col_level" style="color:#FFA500"><b>Medium</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2568/">V2568</td>
+      <td id="col_message">Both operands of the '=' operator should have the same essential type. The current types are: 'floating' and 'unsigned'.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln115">npa_700.c:115</a></td>
+      <td id="col_level" style="color:#FFA500"><b>Medium</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2568/">V2568</td>
+      <td id="col_message">Both operands of the '*' operator should have the same essential type. The current types are: 'floating' and 'unsigned'.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln119">npa_700.c:119</a></td>
+      <td id="col_level" style="color:#CACA00"><b>Low</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2572/">V2572</td>
+      <td id="col_message">The value of the '(6890U)' expression should not be converted from the essential 'unsigned' type to the essential 'floating' type.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln119">npa_700.c:119</a></td>
+      <td id="col_level" style="color:#FFA500"><b>Medium</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2568/">V2568</td>
+      <td id="col_message">Both operands of the '=' operator should have the same essential type. The current types are: 'floating' and 'unsigned'.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln120">npa_700.c:120</a></td>
+      <td id="col_level" style="color:#FFA500"><b>Medium</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2568/">V2568</td>
+      <td id="col_message">Both operands of the '*' operator should have the same essential type. The current types are: 'floating' and 'unsigned'.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln124">npa_700.c:124</a></td>
+      <td id="col_level" style="color:#CACA00"><b>Low</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2572/">V2572</td>
+      <td id="col_message">The value of the '(34470U)' expression should not be converted from the essential 'unsigned' type to the essential 'floating' type.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln124">npa_700.c:124</a></td>
+      <td id="col_level" style="color:#FFA500"><b>Medium</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2568/">V2568</td>
+      <td id="col_message">Both operands of the '=' operator should have the same essential type. The current types are: 'floating' and 'unsigned'.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln125">npa_700.c:125</a></td>
+      <td id="col_level" style="color:#FFA500"><b>Medium</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2568/">V2568</td>
+      <td id="col_message">Both operands of the '*' operator should have the same essential type. The current types are: 'floating' and 'unsigned'.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln129">npa_700.c:129</a></td>
+      <td id="col_level" style="color:#CACA00"><b>Low</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2572/">V2572</td>
+      <td id="col_message">The value of the '(103420U)' expression should not be converted from the essential 'unsigned' type to the essential 'floating' type.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln129">npa_700.c:129</a></td>
+      <td id="col_level" style="color:#FFA500"><b>Medium</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2568/">V2568</td>
+      <td id="col_message">Both operands of the '=' operator should have the same essential type. The current types are: 'floating' and 'unsigned'.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln130">npa_700.c:130</a></td>
+      <td id="col_level" style="color:#FFA500"><b>Medium</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2568/">V2568</td>
+      <td id="col_message">Both operands of the '*' operator should have the same essential type. The current types are: 'floating' and 'unsigned'.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln134">npa_700.c:134</a></td>
+      <td id="col_level" style="color:#CACA00"><b>Low</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2572/">V2572</td>
+      <td id="col_message">The value of the '(206840U)' expression should not be converted from the essential 'unsigned' type to the essential 'floating' type.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln134">npa_700.c:134</a></td>
+      <td id="col_level" style="color:#FFA500"><b>Medium</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2568/">V2568</td>
+      <td id="col_message">Both operands of the '=' operator should have the same essential type. The current types are: 'floating' and 'unsigned'.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln135">npa_700.c:135</a></td>
+      <td id="col_level" style="color:#FFA500"><b>Medium</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2568/">V2568</td>
+      <td id="col_message">Both operands of the '*' operator should have the same essential type. The current types are: 'floating' and 'unsigned'.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln139">npa_700.c:139</a></td>
+      <td id="col_level" style="color:#CACA00"><b>Low</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2572/">V2572</td>
+      <td id="col_message">The value of the '(128U)' expression should not be converted to the narrower essential 'unsigned' type.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln101">npa_700.c:101</a></td>
+      <td id="col_level" style="color:#FFA500"><b>Medium</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2520/">V2520</td>
+      <td id="col_message">Every switch-clause should be terminated by an unconditional 'break' statement.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln150">npa_700.c:150</a></td>
+      <td id="col_level" style="color:#FFA500"><b>Medium</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2568/">V2568</td>
+      <td id="col_message">Both operands of the '+' operator should have the same essential type. The current types are: 'signed' and 'unsigned'.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln150">npa_700.c:150</a></td>
       <td id="col_level" style="color:#FFA500"><b>Medium</b></td>
       <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2544/">V2544</td>
-      <td id="col_message">The left and right operands of the '|=' operator should not have essential 'character' and 'character' types respectively. Consider inspecting operands: left - 'ret_code', right - 'sensor-&gt;read(sensor-&gt;npa_addr, NULL, 0)'</td>
+      <td id="col_message">The left and right operands of the '&amp;' operator should not have essential 'signed' and 'signed' types respectively. Consider inspecting operands: left - '((raw_data[0] &lt;&lt; 8) + raw_data[1])', right - '0x3FFF'</td>
     </tr>
     <tr>
       <td id="col_group">MISRA</td>
-      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln74">npa_700.c:74</a></td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln150">npa_700.c:150</a></td>
+      <td id="col_level" style="color:#CACA00"><b>Low</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2572/">V2572</td>
+      <td id="col_message">Value of the expression should not be converted from the essential 'signed' type to the essential 'unsigned' type.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln154">npa_700.c:154</a></td>
+      <td id="col_level" style="color:#CACA00"><b>Low</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2572/">V2572</td>
+      <td id="col_message">The value of the '(14745U)' expression should not be converted from the essential 'unsigned' type to the essential 'floating' type.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln155">npa_700.c:155</a></td>
+      <td id="col_level" style="color:#CACA00"><b>Low</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2572/">V2572</td>
+      <td id="col_message">The value of the '(1638U)' expression should not be converted from the essential 'unsigned' type to the essential 'floating' type.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln156">npa_700.c:156</a></td>
+      <td id="col_level" style="color:#CACA00"><b>Low</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2572/">V2572</td>
+      <td id="col_message">The value of the 'OUT_U16' expression should not be converted from the essential 'unsigned' type to the essential 'floating' type.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln160">npa_700.c:160</a></td>
+      <td id="col_level" style="color:#CACA00"><b>Low</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2572/">V2572</td>
+      <td id="col_message">The value of the '(1U)' expression should not be converted to the narrower essential 'unsigned' type.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln216">npa_700.c:216</a></td>
       <td id="col_level" style="color:#CACA00"><b>Low</b></td>
       <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2537/">V2537</td>
       <td id="col_message">Functions should not have unused parameters. Consider inspecting the parameter: 'pressure_pa'.</td>
     </tr>
     <tr>
       <td id="col_group">MISRA</td>
-      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln74">npa_700.c:74</a></td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln216">npa_700.c:216</a></td>
       <td id="col_level" style="color:#CACA00"><b>Low</b></td>
       <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2537/">V2537</td>
       <td id="col_message">Functions should not have unused parameters. Consider inspecting the parameter: 'sensor'.</td>
     </tr>
     <tr>
       <td id="col_group">MISRA</td>
-      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln80">npa_700.c:80</a></td>
-      <td id="col_level" style="color:#CACA00"><b>Low</b></td>
-      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2537/">V2537</td>
-      <td id="col_message">Functions should not have unused parameters. Consider inspecting the parameter: 'pressure_pa'.</td>
-    </tr>
-    <tr>
-      <td id="col_group">MISRA</td>
-      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln80">npa_700.c:80</a></td>
-      <td id="col_level" style="color:#CACA00"><b>Low</b></td>
-      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2537/">V2537</td>
-      <td id="col_message">Functions should not have unused parameters. Consider inspecting the parameter: 'sensor'.</td>
-    </tr>
-    <tr>
-      <td id="col_group">MISRA</td>
-      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln80">npa_700.c:80</a></td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln216">npa_700.c:216</a></td>
       <td id="col_level" style="color:#CACA00"><b>Low</b></td>
       <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2537/">V2537</td>
       <td id="col_message">Functions should not have unused parameters. Consider inspecting the parameter: 'temperature_c'.</td>
     </tr>
     <tr>
       <td id="col_group">MISRA</td>
-      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln87">npa_700.c:87</a></td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln223">npa_700.c:223</a></td>
       <td id="col_level" style="color:#CACA00"><b>Low</b></td>
       <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2537/">V2537</td>
       <td id="col_message">Functions should not have unused parameters. Consider inspecting the parameter: 'pressure_pa'.</td>
     </tr>
     <tr>
       <td id="col_group">MISRA</td>
-      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln87">npa_700.c:87</a></td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln223">npa_700.c:223</a></td>
       <td id="col_level" style="color:#CACA00"><b>Low</b></td>
       <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2537/">V2537</td>
       <td id="col_message">Functions should not have unused parameters. Consider inspecting the parameter: 'sensor'.</td>
     </tr>
     <tr>
       <td id="col_group">MISRA</td>
-      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln87">npa_700.c:87</a></td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln223">npa_700.c:223</a></td>
       <td id="col_level" style="color:#CACA00"><b>Low</b></td>
       <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2537/">V2537</td>
       <td id="col_message">Functions should not have unused parameters. Consider inspecting the parameter: 'temperature_c'.</td>
