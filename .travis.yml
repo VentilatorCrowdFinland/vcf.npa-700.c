@@ -19,5 +19,5 @@ script:
 
 addons:
   sonarcloud:
-    organization: "ojousima"
-    projectKey: "ojousima_ojousima.npa-700.c"
+    organization: "vcf"
+    projectKey: "VentilatorCrowdFinland_vcf.npa-700.c"
