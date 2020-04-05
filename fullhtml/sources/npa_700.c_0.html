@@ -162,111 +162,107 @@
 <a name="ln149">                              float * const pressure_pa)</a>
 <a name="ln150">{</a>
 <a name="ln151">    npa_ret_t ret_code = NPA_SUCCESS;</a>
-<a name="ln152">    // Mask status bits out</a>
-<a name="ln153">    const uint16_t OUT_U16 = ( (raw_data[0U] &lt;&lt; 8U) + raw_data[1U]) &amp; 0x3FFFU;</a>
-<a name="ln154">    // Use floats in calculation</a>
-<a name="ln155">    float Pmin = 0.0F;</a>
-<a name="ln156">    float Pmax = 0.0F;</a>
-<a name="ln157">    const float OUTmax = NPA_PRES_MAX_NONSAT;</a>
-<a name="ln158">    const float OUTmin = NPA_PRES_MIN_NONSAT;</a>
-<a name="ln159">    const float OUT = OUT_U16;</a>
-<a name="ln160"> </a>
-<a name="ln161">    if (check_saturation (OUT_U16))</a>
-<a name="ln162">    {</a>
-<a name="ln163">        ret_code |= NPA_WARN_SAT;</a>
-<a name="ln164">    }</a>
-<a name="ln165"> </a>
-<a name="ln166">    ret_code |= get_scaling (model, &amp;Pmax, &amp;Pmin);</a>
-<a name="ln167">    /*</a>
-<a name="ln168">     * Pressure can be calculated from the sensor output using the following formula:</a>
-<a name="ln169">     *</a>
-<a name="ln170">     * P = Pmin + (OUT - OUTmin) / (OUTmax - OUTmin) * (Pmax - Pmin)</a>
-<a name="ln171">     */</a>
-<a name="ln172">    *pressure_pa = Pmin + (OUT - OUTmin) / (OUTmax - OUTmin) * (Pmax - Pmin);</a>
-<a name="ln173">    return ret_code;</a>
-<a name="ln174">}</a>
-<a name="ln175"> </a>
-<a name="ln176">npa_ret_t npa_sample_trigger (const npa_ctx_t * const sensor)</a>
-<a name="ln177">{</a>
-<a name="ln178">    npa_ret_t ret_code = npa_ctx_check (sensor);</a>
-<a name="ln179"> </a>
-<a name="ln180">    if (NPA_SUCCESS == ret_code)</a>
-<a name="ln181">    {</a>
-<a name="ln182">        /*</a>
-<a name="ln183">        This command wakes up the sensor and starts an internal measurement cycle.</a>
-<a name="ln184">        When the measurements are made and the associated calculations are completed,</a>
-<a name="ln185">        the corrected values of pressure and temperature are written to the output</a>
-<a name="ln186">        register. The sensor then returns to ‘sleep mode’. The values in the output</a>
-<a name="ln187">        register can then be read using the Data Fetch commands shown in section 4.4.</a>
-<a name="ln188"> </a>
-<a name="ln189">        The same wake up function as the Read_MR command can also be accomplished by using</a>
-<a name="ln190">        the Read_DF2 or Read_DF3 commands described in section 4.4 and ignoring the</a>
-<a name="ln191">        “stale” data that will be returned.</a>
-<a name="ln192"> </a>
-<a name="ln193">        - Application guide p.15</a>
-<a name="ln194">        */</a>
-<a name="ln195">        ret_code |= sensor-&gt;read (sensor-&gt;npa_addr, NULL, 0U);</a>
-<a name="ln196">    }</a>
-<a name="ln197"> </a>
-<a name="ln198">    return ret_code;</a>
-<a name="ln199">}</a>
-<a name="ln200"> </a>
-<a name="ln201">npa_ret_t npa_read_pressure (const npa_ctx_t * const sensor,</a>
-<a name="ln202">                             float * const pressure_pa)</a>
-<a name="ln203">{</a>
-<a name="ln204">    npa_ret_t ret_code = npa_ctx_check (sensor);</a>
-<a name="ln205"> </a>
-<a name="ln206">    if (NULL == pressure_pa)</a>
-<a name="ln207">    {</a>
-<a name="ln208">        ret_code |= NPA_ERR_NULL;</a>
-<a name="ln209">    }</a>
-<a name="ln210"> </a>
-<a name="ln211">    if (NPA_SUCCESS == ret_code)</a>
-<a name="ln212">    {</a>
-<a name="ln213">        // Initialize raw data as all bits set, as it sets internal error code on</a>
-<a name="ln214">        // by default.</a>
-<a name="ln215">        uint8_t raw_data[2U] = { 0xFFU, 0xFFU };</a>
-<a name="ln216">        ret_code |= sensor-&gt;read (sensor-&gt;npa_addr, raw_data, sizeof (raw_data));</a>
-<a name="ln217">        ret_code |= parse_status (raw_data[0U]);</a>
-<a name="ln218">        ret_code |= parse_value (sensor-&gt;model, raw_data, pressure_pa);</a>
-<a name="ln219">    }</a>
-<a name="ln220"> </a>
-<a name="ln221">    return ret_code;</a>
-<a name="ln222">}</a>
-<a name="ln223"> </a>
-<a name="ln224">npa_ret_t npa_read_pressure_temp_lowres (const npa_ctx_t * const sensor,</a>
-<a name="ln225">        float * const pressure_pa,</a>
-<a name="ln226">        float * const temperature_c)</a>
-<a name="ln227">{</a>
-<a name="ln228">    return NPA_ERR_IMPL;</a>
-<a name="ln229">}</a>
-<a name="ln230"> </a>
-<a name="ln231">npa_ret_t npa_read_pressure_temp_hires (const npa_ctx_t * const sensor,</a>
-<a name="ln232">                                        float * const pressure_pa,</a>
-<a name="ln233">                                        float * const temperature_c)</a>
-<a name="ln234">{</a>
-<a name="ln235">    return NPA_ERR_IMPL;</a>
-<a name="ln236">}</a>
-<a name="ln237"> </a>
-<a name="ln238">/** @} */</a>
+<a name="ln152">    // Mask status bits out.</a>
+<a name="ln153">    const uint16_t OUT_U16 = ( ( (uint32_t) raw_data[0U] &lt;&lt; 8U)</a>
+<a name="ln154">                               + (uint32_t) raw_data[1U])</a>
+<a name="ln155">                             &amp; 0x3FFFU;</a>
+<a name="ln156">    // Use floats in calculation</a>
+<a name="ln157">    float Pmin = 0.0F;</a>
+<a name="ln158">    float Pmax = 0.0F;</a>
+<a name="ln159">    const float OUTmax = (float) NPA_PRES_MAX_NONSAT;</a>
+<a name="ln160">    const float OUTmin = (float) NPA_PRES_MIN_NONSAT;</a>
+<a name="ln161">    const float OUT = (float) OUT_U16;</a>
+<a name="ln162"> </a>
+<a name="ln163">    if (check_saturation (OUT_U16))</a>
+<a name="ln164">    {</a>
+<a name="ln165">        ret_code |= NPA_WARN_SAT;</a>
+<a name="ln166">    }</a>
+<a name="ln167"> </a>
+<a name="ln168">    ret_code |= get_scaling (model, &amp;Pmax, &amp;Pmin);</a>
+<a name="ln169">    /*</a>
+<a name="ln170">     * Pressure can be calculated from the sensor output using the following formula:</a>
+<a name="ln171">     *</a>
+<a name="ln172">     * P = Pmin + (OUT - OUTmin) / (OUTmax - OUTmin) * (Pmax - Pmin)</a>
+<a name="ln173">     */</a>
+<a name="ln174">    *pressure_pa = Pmin + (OUT - OUTmin) / (OUTmax - OUTmin) * (Pmax - Pmin);</a>
+<a name="ln175">    return ret_code;</a>
+<a name="ln176">}</a>
+<a name="ln177"> </a>
+<a name="ln178">npa_ret_t npa_sample_trigger (const npa_ctx_t * const sensor)</a>
+<a name="ln179">{</a>
+<a name="ln180">    npa_ret_t ret_code = npa_ctx_check (sensor);</a>
+<a name="ln181"> </a>
+<a name="ln182">    if (NPA_SUCCESS == ret_code)</a>
+<a name="ln183">    {</a>
+<a name="ln184">        /*</a>
+<a name="ln185">        This command wakes up the sensor and starts an internal measurement cycle.</a>
+<a name="ln186">        When the measurements are made and the associated calculations are completed,</a>
+<a name="ln187">        the corrected values of pressure and temperature are written to the output</a>
+<a name="ln188">        register. The sensor then returns to ‘sleep mode’. The values in the output</a>
+<a name="ln189">        register can then be read using the Data Fetch commands shown in section 4.4.</a>
+<a name="ln190"> </a>
+<a name="ln191">        The same wake up function as the Read_MR command can also be accomplished by using</a>
+<a name="ln192">        the Read_DF2 or Read_DF3 commands described in section 4.4 and ignoring the</a>
+<a name="ln193">        “stale” data that will be returned.</a>
+<a name="ln194"> </a>
+<a name="ln195">        - Application guide p.15</a>
+<a name="ln196">        */</a>
+<a name="ln197">        ret_code |= sensor-&gt;read (sensor-&gt;npa_addr, NULL, 0U);</a>
+<a name="ln198">    }</a>
+<a name="ln199"> </a>
+<a name="ln200">    return ret_code;</a>
+<a name="ln201">}</a>
+<a name="ln202"> </a>
+<a name="ln203">npa_ret_t npa_read_pressure (const npa_ctx_t * const sensor,</a>
+<a name="ln204">                             float * const pressure_pa)</a>
+<a name="ln205">{</a>
+<a name="ln206">    npa_ret_t ret_code = npa_ctx_check (sensor);</a>
+<a name="ln207"> </a>
+<a name="ln208">    if (NULL == pressure_pa)</a>
+<a name="ln209">    {</a>
+<a name="ln210">        ret_code |= NPA_ERR_NULL;</a>
+<a name="ln211">    }</a>
+<a name="ln212"> </a>
+<a name="ln213">    if (NPA_SUCCESS == ret_code)</a>
+<a name="ln214">    {</a>
+<a name="ln215">        // Initialize raw data as all bits set, as it sets internal error code on</a>
+<a name="ln216">        // by default.</a>
+<a name="ln217">        uint8_t raw_data[2U] = { 0xFFU, 0xFFU };</a>
+<a name="ln218">        ret_code |= sensor-&gt;read (sensor-&gt;npa_addr, raw_data, sizeof (raw_data));</a>
+<a name="ln219">        ret_code |= parse_status (raw_data[0U]);</a>
+<a name="ln220">        ret_code |= parse_value (sensor-&gt;model, raw_data, pressure_pa);</a>
+<a name="ln221">    }</a>
+<a name="ln222"> </a>
+<a name="ln223">    return ret_code;</a>
+<a name="ln224">}</a>
+<a name="ln225"> </a>
+<a name="ln226">npa_ret_t npa_read_pressure_temp_lowres (const npa_ctx_t * const sensor,</a>
+<a name="ln227">        float * const pressure_pa,</a>
+<a name="ln228">        float * const temperature_c)</a>
+<a name="ln229">{</a>
+<a name="ln230">    return NPA_ERR_IMPL;</a>
+<a name="ln231">}</a>
+<a name="ln232"> </a>
+<a name="ln233">npa_ret_t npa_read_pressure_temp_hires (const npa_ctx_t * const sensor,</a>
+<a name="ln234">                                        float * const pressure_pa,</a>
+<a name="ln235">                                        float * const temperature_c)</a>
+<a name="ln236">{</a>
+<a name="ln237">    return NPA_ERR_IMPL;</a>
+<a name="ln238">}</a>
+<a name="ln239"> </a>
+<a name="ln240">/** @} */</a>
 
 </code></pre>
 <div class="balloon" rel="53"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> The value of the 'data >> 6U' expression should not be converted from the essential 'signed' type to the essential 'unsigned' type.</p></div>
 <div class="balloon" rel="86"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2568/" target="_blank">V2568</a> Both operands of the '=' operator should have the same essential type. The current types are: 'Boolean' and 'signed'.</p></div>
 <div class="balloon" rel="91"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2568/" target="_blank">V2568</a> Both operands of the '=' operator should have the same essential type. The current types are: 'Boolean' and 'signed'.</p></div>
-<div class="balloon" rel="153"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2568/" target="_blank">V2568</a> Both operands of the '+' operator should have the same essential type. The current types are: 'signed' and 'unsigned'.</p></div>
-<div class="balloon" rel="153"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2568/" target="_blank">V2568</a> Both operands of the '&' operator should have the same essential type. The current types are: 'signed' and 'unsigned'.</p></div>
-<div class="balloon" rel="153"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2544/" target="_blank">V2544</a> The left operand '((raw_data[0U] << 8U) + raw_data[1U])' of the '&' operator should not have the essential 'signed' type.</p></div>
 <div class="balloon" rel="153"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> Value of the expression should not be converted to the narrower essential 'unsigned' type.</p></div>
-<div class="balloon" rel="157"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> The value of the '(14745U)' expression should not be converted from the essential 'unsigned' type to the essential 'floating' type.</p></div>
-<div class="balloon" rel="158"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> The value of the '(1638U)' expression should not be converted from the essential 'unsigned' type to the essential 'floating' type.</p></div>
-<div class="balloon" rel="159"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> The value of the 'OUT_U16' expression should not be converted from the essential 'unsigned' type to the essential 'floating' type.</p></div>
-<div class="balloon" rel="224"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'pressure_pa'.</p></div>
-<div class="balloon" rel="224"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'sensor'.</p></div>
-<div class="balloon" rel="224"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'temperature_c'.</p></div>
-<div class="balloon" rel="231"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'pressure_pa'.</p></div>
-<div class="balloon" rel="231"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'sensor'.</p></div>
-<div class="balloon" rel="231"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'temperature_c'.</p></div>
+<div class="balloon" rel="226"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'pressure_pa'.</p></div>
+<div class="balloon" rel="226"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'sensor'.</p></div>
+<div class="balloon" rel="226"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'temperature_c'.</p></div>
+<div class="balloon" rel="233"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'pressure_pa'.</p></div>
+<div class="balloon" rel="233"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'sensor'.</p></div>
+<div class="balloon" rel="233"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'temperature_c'.</p></div>
 
 <link rel="stylesheet" href="highlight.css">
 <script src="highlight.pack.js"></script>
