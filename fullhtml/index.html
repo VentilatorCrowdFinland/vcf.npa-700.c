@@ -1,0 +1,179 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>PVS-Studio HTML Report</title>
+<style type="text/css">
+   TABLE {
+    width: 100%;
+   }
+   #col_group, #col_level, #col_code, #col_cwe, #col_misra {
+    text-align: center;
+    white-space: nowrap;
+    width: 0;
+   }
+   #col_file, #col_info, #col_projects {
+    white-space: nowrap;
+    text-align: left;
+    width: 0;
+   }
+   #col_info {
+    width: 120px;
+   }
+   #col_message {
+    text-align: left;
+   }
+  </style>
+<link rel="stylesheet" href="style.css" />
+<script type="text/javascript" src="script.js"></script>
+</head>
+<body>
+  <div class="header">
+    <img src="images/logo.png" alt=""/>
+    <h1>PVS-Studio Analysis Results</h1>
+    <br class="clear">
+  </div>
+
+  <table cellpadding="0" cellspacing="0" border="0" class="infotopic">
+     <tr><th id="col_info">Date:</th><td>Sun Apr  5 15:10:30 2020</td></tr>
+     <tr><th id="col_info">PVS-Studio Version:</th><td>7.06.37052.34</td></tr>
+     <tr><th id="col_info">Command Line:</th><td>plog-converter -a GA\:1,2,3\;OP\:1,2,3\;CS\:1,2,3\;MISRA\:1,2,3 -t fullhtml src/npa_700.o.PVS-Studio.log -o ./doxygen/html </td></tr>
+     <tr><th id="col_info">Total Warnings (MISRA):</th><td>17</td></tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" border="0" class="sortable" id="sorter">
+    <tr>
+      <th class="gsort">Group</th>
+      <th>Location</th>
+      <th class="lsort">Level</th>
+      <th class="vsort">Code</th>
+      <th>Message</th>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln31">npa_700.c:31</a></td>
+      <td id="col_level" style="color:#FFA500"><b>Medium</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2544/">V2544</td>
+      <td id="col_message">The left and right operands of the '|=' operator should not have essential 'character' and 'signed' types respectively. Consider inspecting operands: left - 'ret_code', right - '(- 4)'</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln31">npa_700.c:31</a></td>
+      <td id="col_level" style="color:#FFA500"><b>Medium</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2568/">V2568</td>
+      <td id="col_message">Both operands of the '|=' operator should have the same essential type. The current types are: 'character' and 'signed'.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln35">npa_700.c:35</a></td>
+      <td id="col_level" style="color:#FFA500"><b>Medium</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2544/">V2544</td>
+      <td id="col_message">The left and right operands of the '|=' operator should not have essential 'character' and 'signed' types respectively. Consider inspecting operands: left - 'ret_code', right - '(- 4)'</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln35">npa_700.c:35</a></td>
+      <td id="col_level" style="color:#FFA500"><b>Medium</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2568/">V2568</td>
+      <td id="col_message">Both operands of the '|=' operator should have the same essential type. The current types are: 'character' and 'signed'.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln39">npa_700.c:39</a></td>
+      <td id="col_level" style="color:#FFA500"><b>Medium</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2544/">V2544</td>
+      <td id="col_message">The left and right operands of the '|=' operator should not have essential 'character' and 'signed' types respectively. Consider inspecting operands: left - 'ret_code', right - '(- 4)'</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln39">npa_700.c:39</a></td>
+      <td id="col_level" style="color:#FFA500"><b>Medium</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2568/">V2568</td>
+      <td id="col_message">Both operands of the '|=' operator should have the same essential type. The current types are: 'character' and 'signed'.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln53">npa_700.c:53</a></td>
+      <td id="col_level" style="color:#FFA500"><b>Medium</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2568/">V2568</td>
+      <td id="col_message">Both operands of the '==' operator should have the same essential type. The current types are: 'signed' and 'character'.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln55">npa_700.c:55</a></td>
+      <td id="col_level" style="color:#FFA500"><b>Medium</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2544/">V2544</td>
+      <td id="col_message">The left and right operands of the '|=' operator should not have essential 'character' and 'signed' types respectively. Consider inspecting operands: left - 'ret_code', right - '(- 8)'</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln55">npa_700.c:55</a></td>
+      <td id="col_level" style="color:#FFA500"><b>Medium</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2568/">V2568</td>
+      <td id="col_message">Both operands of the '|=' operator should have the same essential type. The current types are: 'character' and 'signed'.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln61">npa_700.c:61</a></td>
+      <td id="col_level" style="color:#CACA00"><b>Low</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2537/">V2537</td>
+      <td id="col_message">Functions should not have unused parameters. Consider inspecting the parameter: 'pressure_pa'.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln61">npa_700.c:61</a></td>
+      <td id="col_level" style="color:#CACA00"><b>Low</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2537/">V2537</td>
+      <td id="col_message">Functions should not have unused parameters. Consider inspecting the parameter: 'sensor'.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln67">npa_700.c:67</a></td>
+      <td id="col_level" style="color:#CACA00"><b>Low</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2537/">V2537</td>
+      <td id="col_message">Functions should not have unused parameters. Consider inspecting the parameter: 'pressure_pa'.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln67">npa_700.c:67</a></td>
+      <td id="col_level" style="color:#CACA00"><b>Low</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2537/">V2537</td>
+      <td id="col_message">Functions should not have unused parameters. Consider inspecting the parameter: 'sensor'.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln67">npa_700.c:67</a></td>
+      <td id="col_level" style="color:#CACA00"><b>Low</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2537/">V2537</td>
+      <td id="col_message">Functions should not have unused parameters. Consider inspecting the parameter: 'temperature_c'.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln74">npa_700.c:74</a></td>
+      <td id="col_level" style="color:#CACA00"><b>Low</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2537/">V2537</td>
+      <td id="col_message">Functions should not have unused parameters. Consider inspecting the parameter: 'pressure_pa'.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln74">npa_700.c:74</a></td>
+      <td id="col_level" style="color:#CACA00"><b>Low</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2537/">V2537</td>
+      <td id="col_message">Functions should not have unused parameters. Consider inspecting the parameter: 'sensor'.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln74">npa_700.c:74</a></td>
+      <td id="col_level" style="color:#CACA00"><b>Low</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2537/">V2537</td>
+      <td id="col_message">Functions should not have unused parameters. Consider inspecting the parameter: 'temperature_c'.</td>
+    </tr>
+
+  </table>
+<script type="text/javascript">
+var sorter=new table.sorter("sorter");
+sorter.init("sorter",0);
+</script>
+</body>
+</html>
+

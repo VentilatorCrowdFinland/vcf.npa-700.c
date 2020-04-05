@@ -1,0 +1,143 @@
+
+<html>
+<head>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII" />
+  <title>npa_700.c</title>
+
+  <link rel="stylesheet" href="../style.css"/>
+  <script src="../jquery-3.2.1.min.js"></script>
+</head>
+<body>
+
+<pre><code class = "cpp">
+<a name="ln1">#include &quot;npa_700.h&quot;</a>
+<a name="ln2"> </a>
+<a name="ln3">#include &lt;stdlib.h&gt;</a>
+<a name="ln4"> </a>
+<a name="ln5">/**</a>
+<a name="ln6"> * @addtogroup NPA-700</a>
+<a name="ln7"> * @{</a>
+<a name="ln8"> */</a>
+<a name="ln9">/**</a>
+<a name="ln10"> * @file npa_700.c</a>
+<a name="ln11"> * @author Otso Jousimaa &lt;otso@ojousima.net&gt;</a>
+<a name="ln12"> * @date 2020-04-05</a>
+<a name="ln13"> * @copyright Otso Jousimaa, License Apache 2.0.</a>
+<a name="ln14"> *</a>
+<a name="ln15"> */</a>
+<a name="ln16"> </a>
+<a name="ln17">/**</a>
+<a name="ln18"> * @brief Validate NPA Context.</a>
+<a name="ln19"> *</a>
+<a name="ln20"> * A valid context must have non-null R/W pointers.</a>
+<a name="ln21"> *</a>
+<a name="ln22"> * @param[in] sensor Sensor context to check.</a>
+<a name="ln23"> * @return @ref npa_ret_t.</a>
+<a name="ln24"> */</a>
+<a name="ln25">static npa_ret_t npa_ctx_check (const npa_ctx_t * const sensor)</a>
+<a name="ln26">{</a>
+<a name="ln27">    npa_ret_t ret_code = NPA_SUCCESS;</a>
+<a name="ln28"> </a>
+<a name="ln29">    if (NULL == sensor)</a>
+<a name="ln30">    {</a>
+<a name="ln31">        ret_code |= NPA_ERR_NULL;</a>
+<a name="ln32">    }</a>
+<a name="ln33">    else if (NULL == sensor-&gt;write)</a>
+<a name="ln34">    {</a>
+<a name="ln35">        ret_code |= NPA_ERR_NULL;</a>
+<a name="ln36">    }</a>
+<a name="ln37">    else if (NULL == sensor-&gt;read)</a>
+<a name="ln38">    {</a>
+<a name="ln39">        ret_code |= NPA_ERR_NULL;</a>
+<a name="ln40">    }</a>
+<a name="ln41">    else</a>
+<a name="ln42">    {</a>
+<a name="ln43">        // No action needed.</a>
+<a name="ln44">    }</a>
+<a name="ln45"> </a>
+<a name="ln46">    return ret_code;</a>
+<a name="ln47">}</a>
+<a name="ln48"> </a>
+<a name="ln49">npa_ret_t npa_read_trigger (const npa_ctx_t * const sensor)</a>
+<a name="ln50">{</a>
+<a name="ln51">    npa_ret_t ret_code = npa_ctx_check (sensor);</a>
+<a name="ln52"> </a>
+<a name="ln53">    if (NPA_SUCCESS == ret_code)</a>
+<a name="ln54">    {</a>
+<a name="ln55">        ret_code |= NPA_ERR_IMPL;</a>
+<a name="ln56">    }</a>
+<a name="ln57"> </a>
+<a name="ln58">    return ret_code;</a>
+<a name="ln59">}</a>
+<a name="ln60"> </a>
+<a name="ln61">npa_ret_t npa_read_pressure (const npa_ctx_t * const sensor,</a>
+<a name="ln62">                             float * const pressure_pa)</a>
+<a name="ln63">{</a>
+<a name="ln64">    return NPA_ERR_IMPL;</a>
+<a name="ln65">}</a>
+<a name="ln66"> </a>
+<a name="ln67">npa_ret_t npa_read_pressure_temp_lowres (const npa_ctx_t * const sensor,</a>
+<a name="ln68">        float * const pressure_pa,</a>
+<a name="ln69">        float * const temperature_c)</a>
+<a name="ln70">{</a>
+<a name="ln71">    return NPA_ERR_IMPL;</a>
+<a name="ln72">}</a>
+<a name="ln73"> </a>
+<a name="ln74">npa_ret_t npa_read_pressure_temp_hires (const npa_ctx_t * const sensor,</a>
+<a name="ln75">                                        float * const pressure_pa,</a>
+<a name="ln76">                                        float * const temperature_c)</a>
+<a name="ln77">{</a>
+<a name="ln78">    return NPA_ERR_IMPL;</a>
+<a name="ln79">}</a>
+<a name="ln80"> </a>
+<a name="ln81">/** @} */</a>
+
+</code></pre>
+<div class="balloon" rel="31"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2544/" target="_blank">V2544</a> The left and right operands of the '|=' operator should not have essential 'character' and 'signed' types respectively. Consider inspecting operands: left - 'ret_code', right - '(- 4)'</p></div>
+<div class="balloon" rel="31"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2568/" target="_blank">V2568</a> Both operands of the '|=' operator should have the same essential type. The current types are: 'character' and 'signed'.</p></div>
+<div class="balloon" rel="35"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2544/" target="_blank">V2544</a> The left and right operands of the '|=' operator should not have essential 'character' and 'signed' types respectively. Consider inspecting operands: left - 'ret_code', right - '(- 4)'</p></div>
+<div class="balloon" rel="35"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2568/" target="_blank">V2568</a> Both operands of the '|=' operator should have the same essential type. The current types are: 'character' and 'signed'.</p></div>
+<div class="balloon" rel="39"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2544/" target="_blank">V2544</a> The left and right operands of the '|=' operator should not have essential 'character' and 'signed' types respectively. Consider inspecting operands: left - 'ret_code', right - '(- 4)'</p></div>
+<div class="balloon" rel="39"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2568/" target="_blank">V2568</a> Both operands of the '|=' operator should have the same essential type. The current types are: 'character' and 'signed'.</p></div>
+<div class="balloon" rel="53"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2568/" target="_blank">V2568</a> Both operands of the '==' operator should have the same essential type. The current types are: 'signed' and 'character'.</p></div>
+<div class="balloon" rel="55"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2544/" target="_blank">V2544</a> The left and right operands of the '|=' operator should not have essential 'character' and 'signed' types respectively. Consider inspecting operands: left - 'ret_code', right - '(- 8)'</p></div>
+<div class="balloon" rel="55"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2568/" target="_blank">V2568</a> Both operands of the '|=' operator should have the same essential type. The current types are: 'character' and 'signed'.</p></div>
+<div class="balloon" rel="61"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'pressure_pa'.</p></div>
+<div class="balloon" rel="61"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'sensor'.</p></div>
+<div class="balloon" rel="67"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'pressure_pa'.</p></div>
+<div class="balloon" rel="67"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'sensor'.</p></div>
+<div class="balloon" rel="67"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'temperature_c'.</p></div>
+<div class="balloon" rel="74"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'pressure_pa'.</p></div>
+<div class="balloon" rel="74"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'sensor'.</p></div>
+<div class="balloon" rel="74"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'temperature_c'.</p></div>
+
+<link rel="stylesheet" href="highlight.css">
+<script src="highlight.pack.js"></script>
+<script src="highlightjs-line-numbers.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>hljs.initLineNumbersOnLoad();</script>
+<script>
+  $(document).ready(function() {
+      $('.balloon').each(function () {
+          var bl = $(this);
+          var line = bl.attr('rel');
+          var text = $('a[name="ln'+line+'"]').text();
+
+          var space_count = 0;
+          for(var i = 0; i<text.length; i++){
+              var char = text[i];
+              if((char !== ' ')&&(char !== '\t'))break;
+              if(char === '\t')space_count++;
+              space_count++;
+          }
+
+          bl.css('margin-left', space_count*8);
+          $('a[name="ln'+line+'"]').after(bl);
+      });
+
+      window.location = window.location;
+  });
+</script>
+</body>
+</html>
