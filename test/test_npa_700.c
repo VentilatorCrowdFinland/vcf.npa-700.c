@@ -11,9 +11,9 @@
 #define NUM_SENSORS    (7U)     //!< Number of sensor variants.
 #define NUM_VALUES     (3U)     //!< Number of simulated values per sensor.
 
-static const uint8_t min_nonsat_binary[] = { 0x06, 0x66};
-static const uint8_t mid_binary[]        = { 0x20, 0x00};
-static const uint8_t max_nonsat_binary[] = { 0x39, 0x99};
+static const uint8_t min_nonsat_binary[] = { 0x06U, 0x66U};
+static const uint8_t mid_binary[]        = { 0x20U, 0x00U};
+static const uint8_t max_nonsat_binary[] = { 0x39U, 0x99U};
 
 static const npa_ctx_t m_sensor_write_null =
 {
@@ -120,7 +120,7 @@ static const npa_ctx_t m_sensor_005d =
 
 #define M_005D_MIN_NONSAT (-1.0F * NPA_005D_SCALE_PA)
 #define M_005D_MIDDLE     (0.0F)
-#define M_005D_MAX_NONSAT (1.0 * NPA_005D_SCALE_PA)
+#define M_005D_MAX_NONSAT (1.0F * NPA_005D_SCALE_PA)
 #define M_005D_VALUES \
 { \
   M_005D_MIN_NONSAT, \
@@ -138,7 +138,7 @@ static const npa_ctx_t m_sensor_015d =
 
 #define M_015D_MIN_NONSAT (-1.0F * NPA_015D_SCALE_PA)
 #define M_015D_MIDDLE     (0.0F)
-#define M_015D_MAX_NONSAT (1.0 * NPA_015D_SCALE_PA)
+#define M_015D_MAX_NONSAT (1.0F * NPA_015D_SCALE_PA)
 #define M_015D_VALUES \
 { \
   M_015D_MIN_NONSAT, \
@@ -243,17 +243,17 @@ void test_npa_700_read_pressure (void)
             uint8_t expect[2] = { 0xFF, 0xFF };
             uint8_t i2c_result[2];
 
-            if (0 == vindex)
+            if (0U == vindex)
             {
                 memcpy (i2c_result, min_nonsat_binary, 2U);
             }
 
-            if (1 == vindex)
+            if (1U == vindex)
             {
                 memcpy (i2c_result, mid_binary, 2U);
             }
 
-            if (2 == vindex)
+            if (2U == vindex)
             {
                 memcpy (i2c_result, max_nonsat_binary, 2U);
             }
@@ -271,7 +271,7 @@ void test_npa_700_read_pressure (void)
         }
     }
 
-    ret_code = npa_read_pressure (m_sensors[0], NULL);
+    ret_code = npa_read_pressure (m_sensors[0U], NULL);
     TEST_ASSERT (NPA_ERR_NULL == ret_code);
     ret_code = npa_read_pressure (NULL, &pressure_pa);
     TEST_ASSERT (NPA_ERR_NULL == ret_code);
