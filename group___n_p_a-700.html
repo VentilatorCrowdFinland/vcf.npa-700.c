@@ -111,47 +111,107 @@ Data Structures</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:ga087892ab6cc489c0634f8acdfb7550fe"><td class="memItemLeft" align="right" valign="top"><a id="ga087892ab6cc489c0634f8acdfb7550fe"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___n_p_a-700.html#ga087892ab6cc489c0634f8acdfb7550fe">NPA_SUCCESS</a>&#160;&#160;&#160;(0)</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___n_p_a-700.html#ga087892ab6cc489c0634f8acdfb7550fe">NPA_SUCCESS</a>&#160;&#160;&#160;(0U)</td></tr>
 <tr class="memdesc:ga087892ab6cc489c0634f8acdfb7550fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operation was successful. <br /></td></tr>
 <tr class="separator:ga087892ab6cc489c0634f8acdfb7550fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga106ab8f6379766adedecd591d328822a"><td class="memItemLeft" align="right" valign="top"><a id="ga106ab8f6379766adedecd591d328822a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___n_p_a-700.html#ga106ab8f6379766adedecd591d328822a">NPA_ERR_FATAL</a>&#160;&#160;&#160;(128U)</td></tr>
+<tr class="memdesc:ga106ab8f6379766adedecd591d328822a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fatal error code, last bit set. <br /></td></tr>
+<tr class="separator:ga106ab8f6379766adedecd591d328822a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gab7ffcaa94811108f819e5e4a05162b9b"><td class="memItemLeft" align="right" valign="top"><a id="gab7ffcaa94811108f819e5e4a05162b9b"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___n_p_a-700.html#gab7ffcaa94811108f819e5e4a05162b9b">NPA_ERR_NACK</a>&#160;&#160;&#160;(-1)</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___n_p_a-700.html#gab7ffcaa94811108f819e5e4a05162b9b">NPA_ERR_NACK</a>&#160;&#160;&#160;(<a class="el" href="group___n_p_a-700.html#ga106ab8f6379766adedecd591d328822a">NPA_ERR_FATAL</a> + 1U)</td></tr>
 <tr class="memdesc:gab7ffcaa94811108f819e5e4a05162b9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">I2C interface did not acknowledge. <br /></td></tr>
 <tr class="separator:gab7ffcaa94811108f819e5e4a05162b9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga5c95ce1e8787e7d57da7d2f8176a82c4"><td class="memItemLeft" align="right" valign="top"><a id="ga5c95ce1e8787e7d57da7d2f8176a82c4"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___n_p_a-700.html#ga5c95ce1e8787e7d57da7d2f8176a82c4">NPA_ERR_TOUT</a>&#160;&#160;&#160;(-2)</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___n_p_a-700.html#ga5c95ce1e8787e7d57da7d2f8176a82c4">NPA_ERR_TOUT</a>&#160;&#160;&#160;(<a class="el" href="group___n_p_a-700.html#ga106ab8f6379766adedecd591d328822a">NPA_ERR_FATAL</a> + 2U)</td></tr>
 <tr class="memdesc:ga5c95ce1e8787e7d57da7d2f8176a82c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">I2C interface timed out. <br /></td></tr>
 <tr class="separator:ga5c95ce1e8787e7d57da7d2f8176a82c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga86146b723e295a59845314a65f96f32f"><td class="memItemLeft" align="right" valign="top"><a id="ga86146b723e295a59845314a65f96f32f"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___n_p_a-700.html#ga86146b723e295a59845314a65f96f32f">NPA_ERR_NULL</a>&#160;&#160;&#160;(-4)</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___n_p_a-700.html#ga86146b723e295a59845314a65f96f32f">NPA_ERR_NULL</a>&#160;&#160;&#160;(<a class="el" href="group___n_p_a-700.html#ga106ab8f6379766adedecd591d328822a">NPA_ERR_FATAL</a> + 4U)</td></tr>
 <tr class="memdesc:ga86146b723e295a59845314a65f96f32f"><td class="mdescLeft">&#160;</td><td class="mdescRight">NULL pointer supplied. <br /></td></tr>
 <tr class="separator:ga86146b723e295a59845314a65f96f32f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gac558fabed12b27ab486487883f8d22dd"><td class="memItemLeft" align="right" valign="top"><a id="gac558fabed12b27ab486487883f8d22dd"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___n_p_a-700.html#gac558fabed12b27ab486487883f8d22dd">NPA_ERR_IMPL</a>&#160;&#160;&#160;(-8)</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___n_p_a-700.html#gac558fabed12b27ab486487883f8d22dd">NPA_ERR_IMPL</a>&#160;&#160;&#160;(<a class="el" href="group___n_p_a-700.html#ga106ab8f6379766adedecd591d328822a">NPA_ERR_FATAL</a> + 8U)</td></tr>
 <tr class="memdesc:gac558fabed12b27ab486487883f8d22dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function is not implemented. <br /></td></tr>
 <tr class="separator:gac558fabed12b27ab486487883f8d22dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga68a01657edc6a6be3d68324f36da82c2"><td class="memItemLeft" align="right" valign="top"><a id="ga68a01657edc6a6be3d68324f36da82c2"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___n_p_a-700.html#ga68a01657edc6a6be3d68324f36da82c2">NPA_ERR_PARAM</a>&#160;&#160;&#160;(-8)</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___n_p_a-700.html#ga68a01657edc6a6be3d68324f36da82c2">NPA_ERR_PARAM</a>&#160;&#160;&#160;(<a class="el" href="group___n_p_a-700.html#ga106ab8f6379766adedecd591d328822a">NPA_ERR_FATAL</a> + 16U)</td></tr>
 <tr class="memdesc:ga68a01657edc6a6be3d68324f36da82c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invalid parameter. <br /></td></tr>
 <tr class="separator:ga68a01657edc6a6be3d68324f36da82c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5b3f88b37b4ca8a5372431d993b4b34a"><td class="memItemLeft" align="right" valign="top"><a id="ga5b3f88b37b4ca8a5372431d993b4b34a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___n_p_a-700.html#ga5b3f88b37b4ca8a5372431d993b4b34a">NPA_ERR_MODE</a>&#160;&#160;&#160;(<a class="el" href="group___n_p_a-700.html#ga106ab8f6379766adedecd591d328822a">NPA_ERR_FATAL</a> + 32U)</td></tr>
+<tr class="memdesc:ga5b3f88b37b4ca8a5372431d993b4b34a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invalid mode. <br /></td></tr>
+<tr class="separator:ga5b3f88b37b4ca8a5372431d993b4b34a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0bd7a1b6655d7ccf9eefc1094528e706"><td class="memItemLeft" align="right" valign="top"><a id="ga0bd7a1b6655d7ccf9eefc1094528e706"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___n_p_a-700.html#ga0bd7a1b6655d7ccf9eefc1094528e706">NPA_ERR_INTERNAL</a>&#160;&#160;&#160;(<a class="el" href="group___n_p_a-700.html#ga106ab8f6379766adedecd591d328822a">NPA_ERR_FATAL</a>)</td></tr>
+<tr class="memdesc:ga0bd7a1b6655d7ccf9eefc1094528e706"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal error. <br /></td></tr>
+<tr class="separator:ga0bd7a1b6655d7ccf9eefc1094528e706"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga5c062b1de6c294285159f1b003e8496b"><td class="memItemLeft" align="right" valign="top"><a id="ga5c062b1de6c294285159f1b003e8496b"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___n_p_a-700.html#ga5c062b1de6c294285159f1b003e8496b">NPA_WARN_SAT</a>&#160;&#160;&#160;(1)</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___n_p_a-700.html#ga5c062b1de6c294285159f1b003e8496b">NPA_WARN_SAT</a>&#160;&#160;&#160;(1U)</td></tr>
 <tr class="memdesc:ga5c062b1de6c294285159f1b003e8496b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Value is saturated. <br /></td></tr>
 <tr class="separator:ga5c062b1de6c294285159f1b003e8496b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga5fff8738d0b3102eb7c5c3c518a1b77b"><td class="memItemLeft" align="right" valign="top"><a id="ga5fff8738d0b3102eb7c5c3c518a1b77b"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___n_p_a-700.html#ga5fff8738d0b3102eb7c5c3c518a1b77b">NPA_WARN_OLD</a>&#160;&#160;&#160;(2)</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___n_p_a-700.html#ga5fff8738d0b3102eb7c5c3c518a1b77b">NPA_WARN_OLD</a>&#160;&#160;&#160;(2U)</td></tr>
 <tr class="memdesc:ga5fff8738d0b3102eb7c5c3c518a1b77b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Value was already read, not updated. <br /></td></tr>
 <tr class="separator:ga5fff8738d0b3102eb7c5c3c518a1b77b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6e2cd74a8c71d5f3c6579e6e3b62094c"><td class="memItemLeft" align="right" valign="top"><a id="ga6e2cd74a8c71d5f3c6579e6e3b62094c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___n_p_a-700.html#ga6e2cd74a8c71d5f3c6579e6e3b62094c">NPA_PRES_MAX_NONSAT</a>&#160;&#160;&#160;(14745U)</td></tr>
+<tr class="memdesc:ga6e2cd74a8c71d5f3c6579e6e3b62094c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum non-saturated pressure counts. <br /></td></tr>
+<tr class="separator:ga6e2cd74a8c71d5f3c6579e6e3b62094c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7b1fcb6dfd7cfb42e8066a6de0db875e"><td class="memItemLeft" align="right" valign="top"><a id="ga7b1fcb6dfd7cfb42e8066a6de0db875e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___n_p_a-700.html#ga7b1fcb6dfd7cfb42e8066a6de0db875e">NPA_PRES_MAX_SAT</a>&#160;&#160;&#160;(16383U)</td></tr>
+<tr class="memdesc:ga7b1fcb6dfd7cfb42e8066a6de0db875e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum saturated pressure counts. <br /></td></tr>
+<tr class="separator:ga7b1fcb6dfd7cfb42e8066a6de0db875e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacf06428a5d2b74fc45daa169773c7ead"><td class="memItemLeft" align="right" valign="top"><a id="gacf06428a5d2b74fc45daa169773c7ead"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___n_p_a-700.html#gacf06428a5d2b74fc45daa169773c7ead">NPA_PRES_MIN_NONSAT</a>&#160;&#160;&#160;(1638U)</td></tr>
+<tr class="memdesc:gacf06428a5d2b74fc45daa169773c7ead"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum non-saturated pressure counts. <br /></td></tr>
+<tr class="separator:gacf06428a5d2b74fc45daa169773c7ead"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6fa195aa4013f1c293aa8b08997e1723"><td class="memItemLeft" align="right" valign="top"><a id="ga6fa195aa4013f1c293aa8b08997e1723"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___n_p_a-700.html#ga6fa195aa4013f1c293aa8b08997e1723">NPA_PRES_MIN_SAT</a>&#160;&#160;&#160;(0U)</td></tr>
+<tr class="memdesc:ga6fa195aa4013f1c293aa8b08997e1723"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum saturated pressure counts. <br /></td></tr>
+<tr class="separator:ga6fa195aa4013f1c293aa8b08997e1723"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa5585c4bbafc1e23425be1e2a2b00006"><td class="memItemLeft" align="right" valign="top"><a id="gaa5585c4bbafc1e23425be1e2a2b00006"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___n_p_a-700.html#gaa5585c4bbafc1e23425be1e2a2b00006">NPA_PRES_MIDDLE</a>&#160;&#160;&#160;(8192U)</td></tr>
+<tr class="memdesc:gaa5585c4bbafc1e23425be1e2a2b00006"><td class="mdescLeft">&#160;</td><td class="mdescRight">Middle pressure, 0-level. <br /></td></tr>
+<tr class="separator:gaa5585c4bbafc1e23425be1e2a2b00006"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2950342a8415bec1d2f46566f7566049"><td class="memItemLeft" align="right" valign="top"><a id="ga2950342a8415bec1d2f46566f7566049"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___n_p_a-700.html#ga2950342a8415bec1d2f46566f7566049">NPA_02WD_SCALE_PA</a>&#160;&#160;&#160;(500U)</td></tr>
+<tr class="memdesc:ga2950342a8415bec1d2f46566f7566049"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum scale of NPA_02WD. <br /></td></tr>
+<tr class="separator:ga2950342a8415bec1d2f46566f7566049"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafa540f4c5d16323552c79f950a345faf"><td class="memItemLeft" align="right" valign="top"><a id="gafa540f4c5d16323552c79f950a345faf"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___n_p_a-700.html#gafa540f4c5d16323552c79f950a345faf">NPA_05WD_SCALE_PA</a>&#160;&#160;&#160;(1250U)</td></tr>
+<tr class="memdesc:gafa540f4c5d16323552c79f950a345faf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum scale of NPA_05WD. <br /></td></tr>
+<tr class="separator:gafa540f4c5d16323552c79f950a345faf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga13273ed9cd7f3b4c188224fbb5491c44"><td class="memItemLeft" align="right" valign="top"><a id="ga13273ed9cd7f3b4c188224fbb5491c44"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___n_p_a-700.html#ga13273ed9cd7f3b4c188224fbb5491c44">NPA_10WD_SCALE_PA</a>&#160;&#160;&#160;(2490U)</td></tr>
+<tr class="memdesc:ga13273ed9cd7f3b4c188224fbb5491c44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum scale of NPA_10WD. <br /></td></tr>
+<tr class="separator:ga13273ed9cd7f3b4c188224fbb5491c44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae482306689d04f100eeb49bcf46bcdbc"><td class="memItemLeft" align="right" valign="top"><a id="gae482306689d04f100eeb49bcf46bcdbc"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___n_p_a-700.html#gae482306689d04f100eeb49bcf46bcdbc">NPA_001D_SCALE_PA</a>&#160;&#160;&#160;(6890U)</td></tr>
+<tr class="memdesc:gae482306689d04f100eeb49bcf46bcdbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum scale of NPA_001D. <br /></td></tr>
+<tr class="separator:gae482306689d04f100eeb49bcf46bcdbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafcfb7871df2ae7eb7b3dd0beb0af29fa"><td class="memItemLeft" align="right" valign="top"><a id="gafcfb7871df2ae7eb7b3dd0beb0af29fa"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___n_p_a-700.html#gafcfb7871df2ae7eb7b3dd0beb0af29fa">NPA_005D_SCALE_PA</a>&#160;&#160;&#160;(34470U)</td></tr>
+<tr class="memdesc:gafcfb7871df2ae7eb7b3dd0beb0af29fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum scale of NPA_005D. <br /></td></tr>
+<tr class="separator:gafcfb7871df2ae7eb7b3dd0beb0af29fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga794c016922cb8f9707032c9754778cd9"><td class="memItemLeft" align="right" valign="top"><a id="ga794c016922cb8f9707032c9754778cd9"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___n_p_a-700.html#ga794c016922cb8f9707032c9754778cd9">NPA_015D_SCALE_PA</a>&#160;&#160;&#160;(103420U)</td></tr>
+<tr class="memdesc:ga794c016922cb8f9707032c9754778cd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum scale of NPA_015D. <br /></td></tr>
+<tr class="separator:ga794c016922cb8f9707032c9754778cd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga186dce11a028d66ec56948d683e23db4"><td class="memItemLeft" align="right" valign="top"><a id="ga186dce11a028d66ec56948d683e23db4"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___n_p_a-700.html#ga186dce11a028d66ec56948d683e23db4">NPA_030D_SCALE_PA</a>&#160;&#160;&#160;(206840U)</td></tr>
+<tr class="memdesc:ga186dce11a028d66ec56948d683e23db4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum scale of NPA_030D. <br /></td></tr>
+<tr class="separator:ga186dce11a028d66ec56948d683e23db4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:gacd0d419c07ef34a6ea38da14aeb0f1ff"><td class="memItemLeft" align="right" valign="top">typedef int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___n_p_a-700.html#gacd0d419c07ef34a6ea38da14aeb0f1ff">npa_ret_t</a></td></tr>
-<tr class="memdesc:gacd0d419c07ef34a6ea38da14aeb0f1ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Error code from NPA 700 driver.  <a href="#gacd0d419c07ef34a6ea38da14aeb0f1ff">More...</a><br /></td></tr>
-<tr class="separator:gacd0d419c07ef34a6ea38da14aeb0f1ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga25010306f834b22aeadbd1a3b0073fd3"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="group___n_p_a-700.html#gacd0d419c07ef34a6ea38da14aeb0f1ff">npa_ret_t</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___n_p_a-700.html#ga25010306f834b22aeadbd1a3b0073fd3">npa_write_fp</a>) (const uint8_t i2c_addr, const uint8_t *const data, const uint8_t data_len)</td></tr>
+<tr class="memitem:ga1017ffccfc86ec12f263bc61f7ac3ce7"><td class="memItemLeft" align="right" valign="top">typedef uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___n_p_a-700.html#ga1017ffccfc86ec12f263bc61f7ac3ce7">npa_ret_t</a></td></tr>
+<tr class="memdesc:ga1017ffccfc86ec12f263bc61f7ac3ce7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Error code from NPA 700 driver.  <a href="#ga1017ffccfc86ec12f263bc61f7ac3ce7">More...</a><br /></td></tr>
+<tr class="separator:ga1017ffccfc86ec12f263bc61f7ac3ce7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga25010306f834b22aeadbd1a3b0073fd3"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="group___n_p_a-700.html#ga1017ffccfc86ec12f263bc61f7ac3ce7">npa_ret_t</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___n_p_a-700.html#ga25010306f834b22aeadbd1a3b0073fd3">npa_write_fp</a>) (const uint8_t i2c_addr, const uint8_t *const data, const uint8_t data_len)</td></tr>
 <tr class="memdesc:ga25010306f834b22aeadbd1a3b0073fd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write data to NPA-700.  <a href="#ga25010306f834b22aeadbd1a3b0073fd3">More...</a><br /></td></tr>
 <tr class="separator:ga25010306f834b22aeadbd1a3b0073fd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga3b86fe91590bbb410782017be8297e53"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="group___n_p_a-700.html#gacd0d419c07ef34a6ea38da14aeb0f1ff">npa_ret_t</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___n_p_a-700.html#ga3b86fe91590bbb410782017be8297e53">npa_read_fp</a>) (const uint8_t i2c_addr, uint8_t *const data, const uint8_t data_len)</td></tr>
+<tr class="memitem:ga3b86fe91590bbb410782017be8297e53"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="group___n_p_a-700.html#ga1017ffccfc86ec12f263bc61f7ac3ce7">npa_ret_t</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___n_p_a-700.html#ga3b86fe91590bbb410782017be8297e53">npa_read_fp</a>) (const uint8_t i2c_addr, uint8_t *const data, const uint8_t data_len)</td></tr>
 <tr class="memdesc:ga3b86fe91590bbb410782017be8297e53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read data from NPA-700.  <a href="#ga3b86fe91590bbb410782017be8297e53">More...</a><br /></td></tr>
 <tr class="separator:ga3b86fe91590bbb410782017be8297e53"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -173,16 +233,16 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga5e7c2789da43a8632b63f06883d228e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___n_p_a-700.html#gacd0d419c07ef34a6ea38da14aeb0f1ff">npa_ret_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___n_p_a-700.html#ga5e7c2789da43a8632b63f06883d228e3">npa_sample_trigger</a> (const <a class="el" href="structnpa__ctx__t.html">npa_ctx_t</a> *const sensor)</td></tr>
+<tr class="memitem:ga5e7c2789da43a8632b63f06883d228e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___n_p_a-700.html#ga1017ffccfc86ec12f263bc61f7ac3ce7">npa_ret_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___n_p_a-700.html#ga5e7c2789da43a8632b63f06883d228e3">npa_sample_trigger</a> (const <a class="el" href="structnpa__ctx__t.html">npa_ctx_t</a> *const sensor)</td></tr>
 <tr class="memdesc:ga5e7c2789da43a8632b63f06883d228e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trigger NPA sampling operation.  <a href="#ga5e7c2789da43a8632b63f06883d228e3">More...</a><br /></td></tr>
 <tr class="separator:ga5e7c2789da43a8632b63f06883d228e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaae6c9c769f5456456288c0abc860c03e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___n_p_a-700.html#gacd0d419c07ef34a6ea38da14aeb0f1ff">npa_ret_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___n_p_a-700.html#gaae6c9c769f5456456288c0abc860c03e">npa_read_pressure</a> (const <a class="el" href="structnpa__ctx__t.html">npa_ctx_t</a> *const sensor, float *const pressure_pa)</td></tr>
+<tr class="memitem:gaae6c9c769f5456456288c0abc860c03e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___n_p_a-700.html#ga1017ffccfc86ec12f263bc61f7ac3ce7">npa_ret_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___n_p_a-700.html#gaae6c9c769f5456456288c0abc860c03e">npa_read_pressure</a> (const <a class="el" href="structnpa__ctx__t.html">npa_ctx_t</a> *const sensor, float *const pressure_pa)</td></tr>
 <tr class="memdesc:gaae6c9c769f5456456288c0abc860c03e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read pressure from sensor.  <a href="#gaae6c9c769f5456456288c0abc860c03e">More...</a><br /></td></tr>
 <tr class="separator:gaae6c9c769f5456456288c0abc860c03e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga096f850a30db7b17087ed03d6112044d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___n_p_a-700.html#gacd0d419c07ef34a6ea38da14aeb0f1ff">npa_ret_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___n_p_a-700.html#ga096f850a30db7b17087ed03d6112044d">npa_read_pressure_temp_lowres</a> (const <a class="el" href="structnpa__ctx__t.html">npa_ctx_t</a> *const sensor, float *const pressure_pa, float *const temperature_c)</td></tr>
+<tr class="memitem:ga096f850a30db7b17087ed03d6112044d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___n_p_a-700.html#ga1017ffccfc86ec12f263bc61f7ac3ce7">npa_ret_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___n_p_a-700.html#ga096f850a30db7b17087ed03d6112044d">npa_read_pressure_temp_lowres</a> (const <a class="el" href="structnpa__ctx__t.html">npa_ctx_t</a> *const sensor, float *const pressure_pa, float *const temperature_c)</td></tr>
 <tr class="memdesc:ga096f850a30db7b17087ed03d6112044d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read pressure and 8-bit temperature from sensor.  <a href="#ga096f850a30db7b17087ed03d6112044d">More...</a><br /></td></tr>
 <tr class="separator:ga096f850a30db7b17087ed03d6112044d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga3cbcfcba5e5364e38ed17bac3c30afa1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___n_p_a-700.html#gacd0d419c07ef34a6ea38da14aeb0f1ff">npa_ret_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___n_p_a-700.html#ga3cbcfcba5e5364e38ed17bac3c30afa1">npa_read_pressure_temp_hires</a> (const <a class="el" href="structnpa__ctx__t.html">npa_ctx_t</a> *const sensor, float *const pressure_pa, float *const temperature_c)</td></tr>
+<tr class="memitem:ga3cbcfcba5e5364e38ed17bac3c30afa1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___n_p_a-700.html#ga1017ffccfc86ec12f263bc61f7ac3ce7">npa_ret_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___n_p_a-700.html#ga3cbcfcba5e5364e38ed17bac3c30afa1">npa_read_pressure_temp_hires</a> (const <a class="el" href="structnpa__ctx__t.html">npa_ctx_t</a> *const sensor, float *const pressure_pa, float *const temperature_c)</td></tr>
 <tr class="memdesc:ga3cbcfcba5e5364e38ed17bac3c30afa1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read pressure and 11-bit temperature from sensor.  <a href="#ga3cbcfcba5e5364e38ed17bac3c30afa1">More...</a><br /></td></tr>
 <tr class="separator:ga3cbcfcba5e5364e38ed17bac3c30afa1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -198,7 +258,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef <a class="el" href="group___n_p_a-700.html#gacd0d419c07ef34a6ea38da14aeb0f1ff">npa_ret_t</a>(* npa_read_fp) (const uint8_t i2c_addr, uint8_t *const data, const uint8_t data_len)</td>
+          <td class="memname">typedef <a class="el" href="group___n_p_a-700.html#ga1017ffccfc86ec12f263bc61f7ac3ce7">npa_ret_t</a>(* npa_read_fp) (const uint8_t i2c_addr, uint8_t *const data, const uint8_t data_len)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -222,28 +282,28 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="npa__700_8h_source.html#l00080">80</a> of file <a class="el" href="npa__700_8h_source.html">npa_700.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="npa__700_8h_source.html#l00105">105</a> of file <a class="el" href="npa__700_8h_source.html">npa_700.h</a>.</p>
 
 </div>
 </div>
-<a id="gacd0d419c07ef34a6ea38da14aeb0f1ff"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gacd0d419c07ef34a6ea38da14aeb0f1ff">&#9670;&nbsp;</a></span>npa_ret_t</h2>
+<a id="ga1017ffccfc86ec12f263bc61f7ac3ce7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1017ffccfc86ec12f263bc61f7ac3ce7">&#9670;&nbsp;</a></span>npa_ret_t</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef int8_t <a class="el" href="group___n_p_a-700.html#gacd0d419c07ef34a6ea38da14aeb0f1ff">npa_ret_t</a></td>
+          <td class="memname">typedef uint8_t <a class="el" href="group___n_p_a-700.html#ga1017ffccfc86ec12f263bc61f7ac3ce7">npa_ret_t</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Error code from NPA 700 driver. </p>
-<p>Negative values are fatal errors, positive values are warnings.</p>
+<p>Values with most significant bit set (0x80) are fatal, others are warnings.</p>
 <h2>Value | Meaning </h2>
-<p>0 | Success. -1 | Error: I2C interface function returned NACK. -2 | Error: I2C interface function timed out. -4 | Error: NULL pointer supplied. -8 | Error: Function is not implemented. -16 | Error: Invalid parameter. 1 | Warning: Value is saturated. 2 | Warning: Value is already read. </p>
+<p>0 | Success. 129 | Error: I2C interface function returned NACK. 130 | Error: I2C interface function timed out. 132 | Error: NULL pointer supplied. 136 | Error: Function is not implemented. 144 | Error: Invalid parameter. 170 | Error: Sensor is in configuration mode. 192 | Error: Internal error in sensor. 1 | Warning: Value is saturated. 2 | Warning: Value is already read. </p>
 
-<p class="definition">Definition at line <a class="el" href="npa__700_8h_source.html#l00043">43</a> of file <a class="el" href="npa__700_8h_source.html">npa_700.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="npa__700_8h_source.html#l00045">45</a> of file <a class="el" href="npa__700_8h_source.html">npa_700.h</a>.</p>
 
 </div>
 </div>
@@ -254,7 +314,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef <a class="el" href="group___n_p_a-700.html#gacd0d419c07ef34a6ea38da14aeb0f1ff">npa_ret_t</a>(* npa_write_fp) (const uint8_t i2c_addr, const uint8_t *const data, const uint8_t data_len)</td>
+          <td class="memname">typedef <a class="el" href="group___n_p_a-700.html#ga1017ffccfc86ec12f263bc61f7ac3ce7">npa_ret_t</a>(* npa_write_fp) (const uint8_t i2c_addr, const uint8_t *const data, const uint8_t data_len)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -277,7 +337,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="npa__700_8h_source.html#l00064">64</a> of file <a class="el" href="npa__700_8h_source.html">npa_700.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="npa__700_8h_source.html#l00089">89</a> of file <a class="el" href="npa__700_8h_source.html">npa_700.h</a>.</p>
 
 </div>
 </div>
@@ -313,7 +373,7 @@ Functions</h2></td></tr>
 </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="npa__700_8h_source.html#l00090">90</a> of file <a class="el" href="npa__700_8h_source.html">npa_700.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="npa__700_8h_source.html#l00115">115</a> of file <a class="el" href="npa__700_8h_source.html">npa_700.h</a>.</p>
 
 </div>
 </div>
@@ -325,7 +385,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group___n_p_a-700.html#gacd0d419c07ef34a6ea38da14aeb0f1ff">npa_ret_t</a> npa_read_pressure </td>
+          <td class="memname"><a class="el" href="group___n_p_a-700.html#ga1017ffccfc86ec12f263bc61f7ac3ce7">npa_ret_t</a> npa_read_pressure </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="structnpa__ctx__t.html">npa_ctx_t</a> *const&#160;</td>
           <td class="paramname"><em>sensor</em>, </td>
@@ -353,10 +413,10 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group___n_p_a-700.html#gacd0d419c07ef34a6ea38da14aeb0f1ff">npa_ret_t</a>.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group___n_p_a-700.html#ga1017ffccfc86ec12f263bc61f7ac3ce7">npa_ret_t</a>.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Use system float as a type. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="npa__700_8c_source.html#l00074">74</a> of file <a class="el" href="npa__700_8c_source.html">npa_700.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="npa__700_8c_source.html#l00198">198</a> of file <a class="el" href="npa__700_8c_source.html">npa_700.c</a>.</p>
 
 </div>
 </div>
@@ -367,7 +427,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group___n_p_a-700.html#gacd0d419c07ef34a6ea38da14aeb0f1ff">npa_ret_t</a> npa_read_pressure_temp_hires </td>
+          <td class="memname"><a class="el" href="group___n_p_a-700.html#ga1017ffccfc86ec12f263bc61f7ac3ce7">npa_ret_t</a> npa_read_pressure_temp_hires </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="structnpa__ctx__t.html">npa_ctx_t</a> *const&#160;</td>
           <td class="paramname"><em>sensor</em>, </td>
@@ -402,10 +462,10 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group___n_p_a-700.html#gacd0d419c07ef34a6ea38da14aeb0f1ff">npa_ret_t</a>.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group___n_p_a-700.html#ga1017ffccfc86ec12f263bc61f7ac3ce7">npa_ret_t</a>.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Use system float as a type. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="npa__700_8c_source.html#l00087">87</a> of file <a class="el" href="npa__700_8c_source.html">npa_700.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="npa__700_8c_source.html#l00223">223</a> of file <a class="el" href="npa__700_8c_source.html">npa_700.c</a>.</p>
 
 </div>
 </div>
@@ -416,7 +476,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group___n_p_a-700.html#gacd0d419c07ef34a6ea38da14aeb0f1ff">npa_ret_t</a> npa_read_pressure_temp_lowres </td>
+          <td class="memname"><a class="el" href="group___n_p_a-700.html#ga1017ffccfc86ec12f263bc61f7ac3ce7">npa_ret_t</a> npa_read_pressure_temp_lowres </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="structnpa__ctx__t.html">npa_ctx_t</a> *const&#160;</td>
           <td class="paramname"><em>sensor</em>, </td>
@@ -451,10 +511,10 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group___n_p_a-700.html#gacd0d419c07ef34a6ea38da14aeb0f1ff">npa_ret_t</a>.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group___n_p_a-700.html#ga1017ffccfc86ec12f263bc61f7ac3ce7">npa_ret_t</a>.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Use system float as a type. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="npa__700_8c_source.html#l00080">80</a> of file <a class="el" href="npa__700_8c_source.html">npa_700.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="npa__700_8c_source.html#l00216">216</a> of file <a class="el" href="npa__700_8c_source.html">npa_700.c</a>.</p>
 
 </div>
 </div>
@@ -465,7 +525,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group___n_p_a-700.html#gacd0d419c07ef34a6ea38da14aeb0f1ff">npa_ret_t</a> npa_sample_trigger </td>
+          <td class="memname"><a class="el" href="group___n_p_a-700.html#ga1017ffccfc86ec12f263bc61f7ac3ce7">npa_ret_t</a> npa_sample_trigger </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="structnpa__ctx__t.html">npa_ctx_t</a> *const&#160;</td>
           <td class="paramname"><em>sensor</em></td><td>)</td>
@@ -482,9 +542,9 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group___n_p_a-700.html#gacd0d419c07ef34a6ea38da14aeb0f1ff">npa_ret_t</a>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group___n_p_a-700.html#ga1017ffccfc86ec12f263bc61f7ac3ce7">npa_ret_t</a>. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="npa__700_8c_source.html#l00049">49</a> of file <a class="el" href="npa__700_8c_source.html">npa_700.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="npa__700_8c_source.html#l00173">173</a> of file <a class="el" href="npa__700_8c_source.html">npa_700.c</a>.</p>
 
 </div>
 </div>

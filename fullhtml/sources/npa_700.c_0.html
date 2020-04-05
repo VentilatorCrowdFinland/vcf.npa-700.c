@@ -13,116 +13,283 @@
 <pre><code class = "cpp">
 <a name="ln1">#include &quot;npa_700.h&quot;</a>
 <a name="ln2"> </a>
-<a name="ln3">#include &lt;stdlib.h&gt;</a>
-<a name="ln4"> </a>
-<a name="ln5">/**</a>
-<a name="ln6"> * @addtogroup NPA-700</a>
-<a name="ln7"> * @{</a>
-<a name="ln8"> */</a>
-<a name="ln9">/**</a>
-<a name="ln10"> * @file npa_700.c</a>
-<a name="ln11"> * @author Otso Jousimaa &lt;otso@ojousima.net&gt;</a>
-<a name="ln12"> * @date 2020-04-05</a>
-<a name="ln13"> * @copyright Otso Jousimaa, License Apache 2.0.</a>
-<a name="ln14"> *</a>
-<a name="ln15"> */</a>
-<a name="ln16"> </a>
-<a name="ln17">/**</a>
-<a name="ln18"> * @brief Validate NPA Context.</a>
-<a name="ln19"> *</a>
-<a name="ln20"> * A valid context must have non-null R/W pointers.</a>
-<a name="ln21"> *</a>
-<a name="ln22"> * @param[in] sensor Sensor context to check.</a>
-<a name="ln23"> * @return @ref npa_ret_t.</a>
-<a name="ln24"> */</a>
-<a name="ln25">static npa_ret_t npa_ctx_check (const npa_ctx_t * const sensor)</a>
-<a name="ln26">{</a>
-<a name="ln27">    npa_ret_t ret_code = NPA_SUCCESS;</a>
-<a name="ln28"> </a>
-<a name="ln29">    if (NULL == sensor)</a>
-<a name="ln30">    {</a>
-<a name="ln31">        ret_code |= NPA_ERR_NULL;</a>
-<a name="ln32">    }</a>
-<a name="ln33">    else if (NULL == sensor-&gt;write)</a>
-<a name="ln34">    {</a>
-<a name="ln35">        ret_code |= NPA_ERR_NULL;</a>
-<a name="ln36">    }</a>
-<a name="ln37">    else if (NULL == sensor-&gt;read)</a>
-<a name="ln38">    {</a>
-<a name="ln39">        ret_code |= NPA_ERR_NULL;</a>
-<a name="ln40">    }</a>
-<a name="ln41">    else</a>
-<a name="ln42">    {</a>
-<a name="ln43">        // No action needed.</a>
-<a name="ln44">    }</a>
-<a name="ln45"> </a>
-<a name="ln46">    return ret_code;</a>
-<a name="ln47">}</a>
-<a name="ln48"> </a>
-<a name="ln49">npa_ret_t npa_sample_trigger (const npa_ctx_t * const sensor)</a>
-<a name="ln50">{</a>
-<a name="ln51">    npa_ret_t ret_code = npa_ctx_check (sensor);</a>
-<a name="ln52"> </a>
-<a name="ln53">    if (NPA_SUCCESS == ret_code)</a>
-<a name="ln54">    {</a>
-<a name="ln55">        /*</a>
-<a name="ln56">        This command wakes up the sensor and starts an internal measurement cycle.</a>
-<a name="ln57">        When the measurements are made and the associated calculations are completed,</a>
-<a name="ln58">        the corrected values of pressure and temperature are written to the output</a>
-<a name="ln59">        register. The sensor then returns to ‘sleep mode’. The values in the output</a>
-<a name="ln60">        register can then be read using the Data Fetch commands shown in section 4.4.</a>
-<a name="ln61"> </a>
-<a name="ln62">        The same wake up function as the Read_MR command can also be accomplished by using</a>
-<a name="ln63">        the Read_DF2 or Read_DF3 commands described in section 4.4 and ignoring the</a>
-<a name="ln64">        “stale” data that will be returned.</a>
+<a name="ln3">#include &lt;stdbool.h&gt;</a>
+<a name="ln4">#include &lt;stdlib.h&gt;</a>
+<a name="ln5"> </a>
+<a name="ln6">/**</a>
+<a name="ln7"> * @addtogroup NPA-700</a>
+<a name="ln8"> * @{</a>
+<a name="ln9"> */</a>
+<a name="ln10">/**</a>
+<a name="ln11"> * @file npa_700.c</a>
+<a name="ln12"> * @author Otso Jousimaa &lt;otso@ojousima.net&gt;</a>
+<a name="ln13"> * @date 2020-04-05</a>
+<a name="ln14"> * @copyright Otso Jousimaa, License Apache 2.0.</a>
+<a name="ln15"> *</a>
+<a name="ln16"> */</a>
+<a name="ln17"> </a>
+<a name="ln18">/**</a>
+<a name="ln19"> * @brief Validate NPA Context.</a>
+<a name="ln20"> *</a>
+<a name="ln21"> * A valid context must have non-null R/W pointers.</a>
+<a name="ln22"> *</a>
+<a name="ln23"> * @param[in] sensor Sensor context to check.</a>
+<a name="ln24"> * @return @ref npa_ret_t.</a>
+<a name="ln25"> */</a>
+<a name="ln26">static npa_ret_t npa_ctx_check (const npa_ctx_t * const sensor)</a>
+<a name="ln27">{</a>
+<a name="ln28">    npa_ret_t ret_code = NPA_SUCCESS;</a>
+<a name="ln29"> </a>
+<a name="ln30">    if (NULL == sensor)</a>
+<a name="ln31">    {</a>
+<a name="ln32">        ret_code |= NPA_ERR_NULL;</a>
+<a name="ln33">    }</a>
+<a name="ln34">    else if (NULL == sensor-&gt;write)</a>
+<a name="ln35">    {</a>
+<a name="ln36">        ret_code |= NPA_ERR_NULL;</a>
+<a name="ln37">    }</a>
+<a name="ln38">    else if (NULL == sensor-&gt;read)</a>
+<a name="ln39">    {</a>
+<a name="ln40">        ret_code |= NPA_ERR_NULL;</a>
+<a name="ln41">    }</a>
+<a name="ln42">    else</a>
+<a name="ln43">    {</a>
+<a name="ln44">        // No action needed.</a>
+<a name="ln45">    }</a>
+<a name="ln46"> </a>
+<a name="ln47">    return ret_code;</a>
+<a name="ln48">}</a>
+<a name="ln49"> </a>
+<a name="ln50">static npa_ret_t parse_status (const uint8_t data)</a>
+<a name="ln51">{</a>
+<a name="ln52">    npa_ret_t ret_code = NPA_SUCCESS;</a>
+<a name="ln53">    uint8_t status_bits = data &gt;&gt; 6;</a>
+<a name="ln54"> </a>
+<a name="ln55">    switch (status_bits)</a>
+<a name="ln56">    {</a>
+<a name="ln57">        case 0:</a>
+<a name="ln58">            // No action needed</a>
+<a name="ln59">            break;</a>
+<a name="ln60"> </a>
+<a name="ln61">        case 1:</a>
+<a name="ln62">            // Configuration not supported by this driver, configuration mode is always error.</a>
+<a name="ln63">            ret_code |= NPA_ERR_MODE;</a>
+<a name="ln64">            break;</a>
 <a name="ln65"> </a>
-<a name="ln66">        - Application guide p.15</a>
-<a name="ln67">        */</a>
-<a name="ln68">        ret_code |= sensor-&gt;read (sensor-&gt;npa_addr, NULL, 0);</a>
-<a name="ln69">    }</a>
-<a name="ln70"> </a>
-<a name="ln71">    return ret_code;</a>
-<a name="ln72">}</a>
+<a name="ln66">        case 2:</a>
+<a name="ln67">            ret_code |= NPA_WARN_OLD;</a>
+<a name="ln68"> </a>
+<a name="ln69">        case 3:</a>
+<a name="ln70">        default:</a>
+<a name="ln71">            ret_code |= NPA_ERR_FATAL;</a>
+<a name="ln72">    }</a>
 <a name="ln73"> </a>
-<a name="ln74">npa_ret_t npa_read_pressure (const npa_ctx_t * const sensor,</a>
-<a name="ln75">                             float * const pressure_pa)</a>
-<a name="ln76">{</a>
-<a name="ln77">    return NPA_ERR_IMPL;</a>
-<a name="ln78">}</a>
-<a name="ln79"> </a>
-<a name="ln80">npa_ret_t npa_read_pressure_temp_lowres (const npa_ctx_t * const sensor,</a>
-<a name="ln81">        float * const pressure_pa,</a>
-<a name="ln82">        float * const temperature_c)</a>
-<a name="ln83">{</a>
-<a name="ln84">    return NPA_ERR_IMPL;</a>
-<a name="ln85">}</a>
+<a name="ln74">    return ret_code;</a>
+<a name="ln75">}</a>
+<a name="ln76"> </a>
+<a name="ln77">// Return true if value has been saturated.</a>
+<a name="ln78">static bool check_saturation (const uint16_t value)</a>
+<a name="ln79">{</a>
+<a name="ln80">    bool saturated = false;</a>
+<a name="ln81"> </a>
+<a name="ln82">    if (NPA_PRES_MIN_NONSAT &gt; value)</a>
+<a name="ln83">    {</a>
+<a name="ln84">        saturated = true;</a>
+<a name="ln85">    }</a>
 <a name="ln86"> </a>
-<a name="ln87">npa_ret_t npa_read_pressure_temp_hires (const npa_ctx_t * const sensor,</a>
-<a name="ln88">                                        float * const pressure_pa,</a>
-<a name="ln89">                                        float * const temperature_c)</a>
-<a name="ln90">{</a>
-<a name="ln91">    return NPA_ERR_IMPL;</a>
-<a name="ln92">}</a>
-<a name="ln93"> </a>
-<a name="ln94">/** @} */</a>
+<a name="ln87">    if (NPA_PRES_MAX_NONSAT &lt; value)</a>
+<a name="ln88">    {</a>
+<a name="ln89">        saturated = true;</a>
+<a name="ln90">    }</a>
+<a name="ln91"> </a>
+<a name="ln92">    return saturated;</a>
+<a name="ln93">}</a>
+<a name="ln94"> </a>
+<a name="ln95">// Get min/max pressure of given sensor</a>
+<a name="ln96">static npa_ret_t get_scaling (const npa_variant_t model, float * const Pmax,</a>
+<a name="ln97">                              float * const Pmin)</a>
+<a name="ln98">{</a>
+<a name="ln99">    npa_ret_t ret_code = NPA_SUCCESS;</a>
+<a name="ln100"> </a>
+<a name="ln101">    switch (model)</a>
+<a name="ln102">    {</a>
+<a name="ln103">        case NPA_700_02WD:</a>
+<a name="ln104">            *Pmax = NPA_02WD_SCALE_PA;</a>
+<a name="ln105">            *Pmin = -1.0f * NPA_02WD_SCALE_PA;</a>
+<a name="ln106">            break;</a>
+<a name="ln107"> </a>
+<a name="ln108">        case NPA_700_05WD:</a>
+<a name="ln109">            *Pmax = NPA_05WD_SCALE_PA;</a>
+<a name="ln110">            *Pmin = -1.0f * NPA_05WD_SCALE_PA;</a>
+<a name="ln111">            break;</a>
+<a name="ln112"> </a>
+<a name="ln113">        case NPA_700_10WD:</a>
+<a name="ln114">            *Pmax = NPA_10WD_SCALE_PA;</a>
+<a name="ln115">            *Pmin = -1.0f * NPA_10WD_SCALE_PA;</a>
+<a name="ln116">            break;</a>
+<a name="ln117"> </a>
+<a name="ln118">        case NPA_700_001D:</a>
+<a name="ln119">            *Pmax = NPA_001D_SCALE_PA;</a>
+<a name="ln120">            *Pmin = -1.0f * NPA_001D_SCALE_PA;</a>
+<a name="ln121">            break;</a>
+<a name="ln122"> </a>
+<a name="ln123">        case NPA_700_005D:</a>
+<a name="ln124">            *Pmax = NPA_005D_SCALE_PA;</a>
+<a name="ln125">            *Pmin = -1.0f * NPA_005D_SCALE_PA;</a>
+<a name="ln126">            break;</a>
+<a name="ln127"> </a>
+<a name="ln128">        case NPA_700_015D:</a>
+<a name="ln129">            *Pmax = NPA_015D_SCALE_PA;</a>
+<a name="ln130">            *Pmin = -1.0f * NPA_015D_SCALE_PA;</a>
+<a name="ln131">            break;</a>
+<a name="ln132"> </a>
+<a name="ln133">        case NPA_700_030D:</a>
+<a name="ln134">            *Pmax = NPA_030D_SCALE_PA;</a>
+<a name="ln135">            *Pmin = -1.0f * NPA_030D_SCALE_PA;</a>
+<a name="ln136">            break;</a>
+<a name="ln137"> </a>
+<a name="ln138">        default:</a>
+<a name="ln139">            ret_code |= NPA_ERR_FATAL;</a>
+<a name="ln140">    }</a>
+<a name="ln141"> </a>
+<a name="ln142">    return ret_code;</a>
+<a name="ln143">}</a>
+<a name="ln144"> </a>
+<a name="ln145">static npa_ret_t parse_value (const npa_variant_t model, const uint8_t * const raw_data,</a>
+<a name="ln146">                              float * const pressure_pa)</a>
+<a name="ln147">{</a>
+<a name="ln148">    npa_ret_t ret_code = NPA_SUCCESS;</a>
+<a name="ln149">    // Mask status bits out</a>
+<a name="ln150">    const uint16_t OUT_U16 = ( (raw_data[0] &lt;&lt; 8) + raw_data[1]) &amp; 0x3FFF;</a>
+<a name="ln151">    // Use floats in calculation</a>
+<a name="ln152">    float Pmin = 0;</a>
+<a name="ln153">    float Pmax = 0;</a>
+<a name="ln154">    const float OUTmax = NPA_PRES_MAX_NONSAT;</a>
+<a name="ln155">    const float OUTmin = NPA_PRES_MIN_NONSAT;</a>
+<a name="ln156">    const float OUT = OUT_U16;</a>
+<a name="ln157"> </a>
+<a name="ln158">    if (check_saturation (OUT_U16))</a>
+<a name="ln159">    {</a>
+<a name="ln160">        ret_code |= NPA_WARN_SAT;</a>
+<a name="ln161">    }</a>
+<a name="ln162"> </a>
+<a name="ln163">    ret_code |= get_scaling (model, &amp;Pmax, &amp;Pmin);</a>
+<a name="ln164">    /*</a>
+<a name="ln165">     * Pressure can be calculated from the sensor output using the following formula:</a>
+<a name="ln166">     *</a>
+<a name="ln167">     * P = Pmin + (OUT - OUTmin) / (OUTmax - OUTmin) * (Pmax - Pmin)</a>
+<a name="ln168">     */</a>
+<a name="ln169">    *pressure_pa = Pmin + (OUT - OUTmin) / (OUTmax - OUTmin) * (Pmax - Pmin);</a>
+<a name="ln170">    return ret_code;</a>
+<a name="ln171">}</a>
+<a name="ln172"> </a>
+<a name="ln173">npa_ret_t npa_sample_trigger (const npa_ctx_t * const sensor)</a>
+<a name="ln174">{</a>
+<a name="ln175">    npa_ret_t ret_code = npa_ctx_check (sensor);</a>
+<a name="ln176"> </a>
+<a name="ln177">    if (NPA_SUCCESS == ret_code)</a>
+<a name="ln178">    {</a>
+<a name="ln179">        /*</a>
+<a name="ln180">        This command wakes up the sensor and starts an internal measurement cycle.</a>
+<a name="ln181">        When the measurements are made and the associated calculations are completed,</a>
+<a name="ln182">        the corrected values of pressure and temperature are written to the output</a>
+<a name="ln183">        register. The sensor then returns to ‘sleep mode’. The values in the output</a>
+<a name="ln184">        register can then be read using the Data Fetch commands shown in section 4.4.</a>
+<a name="ln185"> </a>
+<a name="ln186">        The same wake up function as the Read_MR command can also be accomplished by using</a>
+<a name="ln187">        the Read_DF2 or Read_DF3 commands described in section 4.4 and ignoring the</a>
+<a name="ln188">        “stale” data that will be returned.</a>
+<a name="ln189"> </a>
+<a name="ln190">        - Application guide p.15</a>
+<a name="ln191">        */</a>
+<a name="ln192">        ret_code |= sensor-&gt;read (sensor-&gt;npa_addr, NULL, 0);</a>
+<a name="ln193">    }</a>
+<a name="ln194"> </a>
+<a name="ln195">    return ret_code;</a>
+<a name="ln196">}</a>
+<a name="ln197"> </a>
+<a name="ln198">npa_ret_t npa_read_pressure (const npa_ctx_t * const sensor,</a>
+<a name="ln199">                             float * const pressure_pa)</a>
+<a name="ln200">{</a>
+<a name="ln201">    npa_ret_t ret_code = npa_ctx_check (sensor);</a>
+<a name="ln202"> </a>
+<a name="ln203">    if (NPA_SUCCESS == ret_code)</a>
+<a name="ln204">    {</a>
+<a name="ln205">        // Initialize raw data as alll bits set, as it sets internal error code on</a>
+<a name="ln206">        // by default.</a>
+<a name="ln207">        uint8_t raw_data[2] = { 0xFF, 0xFF };</a>
+<a name="ln208">        ret_code |= sensor-&gt;read (sensor-&gt;npa_addr, raw_data, 2);</a>
+<a name="ln209">        ret_code |= parse_status (raw_data[0]);</a>
+<a name="ln210">        ret_code |= parse_value (sensor-&gt;model, raw_data, pressure_pa);</a>
+<a name="ln211">    }</a>
+<a name="ln212"> </a>
+<a name="ln213">    return ret_code;</a>
+<a name="ln214">}</a>
+<a name="ln215"> </a>
+<a name="ln216">npa_ret_t npa_read_pressure_temp_lowres (const npa_ctx_t * const sensor,</a>
+<a name="ln217">        float * const pressure_pa,</a>
+<a name="ln218">        float * const temperature_c)</a>
+<a name="ln219">{</a>
+<a name="ln220">    return NPA_ERR_IMPL;</a>
+<a name="ln221">}</a>
+<a name="ln222"> </a>
+<a name="ln223">npa_ret_t npa_read_pressure_temp_hires (const npa_ctx_t * const sensor,</a>
+<a name="ln224">                                        float * const pressure_pa,</a>
+<a name="ln225">                                        float * const temperature_c)</a>
+<a name="ln226">{</a>
+<a name="ln227">    return NPA_ERR_IMPL;</a>
+<a name="ln228">}</a>
+<a name="ln229"> </a>
+<a name="ln230">/** @} */</a>
 
 </code></pre>
-<div class="balloon" rel="31"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2544/" target="_blank">V2544</a> The left and right operands of the '|=' operator should not have essential 'character' and 'signed' types respectively. Consider inspecting operands: left - 'ret_code', right - '(- 4)'</p></div>
-<div class="balloon" rel="31"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2568/" target="_blank">V2568</a> Both operands of the '|=' operator should have the same essential type. The current types are: 'character' and 'signed'.</p></div>
-<div class="balloon" rel="35"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2544/" target="_blank">V2544</a> The left and right operands of the '|=' operator should not have essential 'character' and 'signed' types respectively. Consider inspecting operands: left - 'ret_code', right - '(- 4)'</p></div>
-<div class="balloon" rel="35"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2568/" target="_blank">V2568</a> Both operands of the '|=' operator should have the same essential type. The current types are: 'character' and 'signed'.</p></div>
-<div class="balloon" rel="39"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2544/" target="_blank">V2544</a> The left and right operands of the '|=' operator should not have essential 'character' and 'signed' types respectively. Consider inspecting operands: left - 'ret_code', right - '(- 4)'</p></div>
-<div class="balloon" rel="39"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2568/" target="_blank">V2568</a> Both operands of the '|=' operator should have the same essential type. The current types are: 'character' and 'signed'.</p></div>
-<div class="balloon" rel="53"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2568/" target="_blank">V2568</a> Both operands of the '==' operator should have the same essential type. The current types are: 'signed' and 'character'.</p></div>
-<div class="balloon" rel="68"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2544/" target="_blank">V2544</a> The left and right operands of the '|=' operator should not have essential 'character' and 'character' types respectively. Consider inspecting operands: left - 'ret_code', right - 'sensor->read(sensor->npa_addr, NULL, 0)'</p></div>
-<div class="balloon" rel="74"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'pressure_pa'.</p></div>
-<div class="balloon" rel="74"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'sensor'.</p></div>
-<div class="balloon" rel="80"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'pressure_pa'.</p></div>
-<div class="balloon" rel="80"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'sensor'.</p></div>
-<div class="balloon" rel="80"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'temperature_c'.</p></div>
-<div class="balloon" rel="87"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'pressure_pa'.</p></div>
-<div class="balloon" rel="87"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'sensor'.</p></div>
-<div class="balloon" rel="87"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'temperature_c'.</p></div>
+<div class="balloon" rel="32"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> The value of the '((128U) + 4U)' expression should not be converted to the narrower essential 'unsigned' type.</p></div>
+<div class="balloon" rel="36"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> The value of the '((128U) + 4U)' expression should not be converted to the narrower essential 'unsigned' type.</p></div>
+<div class="balloon" rel="40"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> The value of the '((128U) + 4U)' expression should not be converted to the narrower essential 'unsigned' type.</p></div>
+<div class="balloon" rel="53"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> The value of the 'data >> 6' expression should not be converted from the essential 'signed' type to the essential 'unsigned' type.</p></div>
+<div class="balloon" rel="63"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> The value of the '((128U) + 32U)' expression should not be converted to the narrower essential 'unsigned' type.</p></div>
+<div class="balloon" rel="67"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> The value of the '(2U)' expression should not be converted to the narrower essential 'unsigned' type.</p></div>
+<div class="balloon" rel="71"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> The value of the '(128U)' expression should not be converted to the narrower essential 'unsigned' type.</p></div>
+<div class="balloon" rel="67"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v796/" target="_blank">V796</a> It is possible that 'break' statement is missing in switch statement.</p></div>
+<div class="balloon" rel="55"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2520/" target="_blank">V2520</a> Every switch-clause should be terminated by an unconditional 'break' statement.</p></div>
+<div class="balloon" rel="84"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2568/" target="_blank">V2568</a> Both operands of the '=' operator should have the same essential type. The current types are: 'Boolean' and 'signed'.</p></div>
+<div class="balloon" rel="89"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2568/" target="_blank">V2568</a> Both operands of the '=' operator should have the same essential type. The current types are: 'Boolean' and 'signed'.</p></div>
+<div class="balloon" rel="104"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> The value of the '(500U)' expression should not be converted from the essential 'unsigned' type to the essential 'floating' type.</p></div>
+<div class="balloon" rel="104"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2568/" target="_blank">V2568</a> Both operands of the '=' operator should have the same essential type. The current types are: 'floating' and 'unsigned'.</p></div>
+<div class="balloon" rel="105"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2568/" target="_blank">V2568</a> Both operands of the '*' operator should have the same essential type. The current types are: 'floating' and 'unsigned'.</p></div>
+<div class="balloon" rel="109"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> The value of the '(1250U)' expression should not be converted from the essential 'unsigned' type to the essential 'floating' type.</p></div>
+<div class="balloon" rel="109"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2568/" target="_blank">V2568</a> Both operands of the '=' operator should have the same essential type. The current types are: 'floating' and 'unsigned'.</p></div>
+<div class="balloon" rel="110"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2568/" target="_blank">V2568</a> Both operands of the '*' operator should have the same essential type. The current types are: 'floating' and 'unsigned'.</p></div>
+<div class="balloon" rel="114"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> The value of the '(2490U)' expression should not be converted from the essential 'unsigned' type to the essential 'floating' type.</p></div>
+<div class="balloon" rel="114"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2568/" target="_blank">V2568</a> Both operands of the '=' operator should have the same essential type. The current types are: 'floating' and 'unsigned'.</p></div>
+<div class="balloon" rel="115"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2568/" target="_blank">V2568</a> Both operands of the '*' operator should have the same essential type. The current types are: 'floating' and 'unsigned'.</p></div>
+<div class="balloon" rel="119"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> The value of the '(6890U)' expression should not be converted from the essential 'unsigned' type to the essential 'floating' type.</p></div>
+<div class="balloon" rel="119"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2568/" target="_blank">V2568</a> Both operands of the '=' operator should have the same essential type. The current types are: 'floating' and 'unsigned'.</p></div>
+<div class="balloon" rel="120"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2568/" target="_blank">V2568</a> Both operands of the '*' operator should have the same essential type. The current types are: 'floating' and 'unsigned'.</p></div>
+<div class="balloon" rel="124"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> The value of the '(34470U)' expression should not be converted from the essential 'unsigned' type to the essential 'floating' type.</p></div>
+<div class="balloon" rel="124"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2568/" target="_blank">V2568</a> Both operands of the '=' operator should have the same essential type. The current types are: 'floating' and 'unsigned'.</p></div>
+<div class="balloon" rel="125"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2568/" target="_blank">V2568</a> Both operands of the '*' operator should have the same essential type. The current types are: 'floating' and 'unsigned'.</p></div>
+<div class="balloon" rel="129"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> The value of the '(103420U)' expression should not be converted from the essential 'unsigned' type to the essential 'floating' type.</p></div>
+<div class="balloon" rel="129"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2568/" target="_blank">V2568</a> Both operands of the '=' operator should have the same essential type. The current types are: 'floating' and 'unsigned'.</p></div>
+<div class="balloon" rel="130"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2568/" target="_blank">V2568</a> Both operands of the '*' operator should have the same essential type. The current types are: 'floating' and 'unsigned'.</p></div>
+<div class="balloon" rel="134"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> The value of the '(206840U)' expression should not be converted from the essential 'unsigned' type to the essential 'floating' type.</p></div>
+<div class="balloon" rel="134"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2568/" target="_blank">V2568</a> Both operands of the '=' operator should have the same essential type. The current types are: 'floating' and 'unsigned'.</p></div>
+<div class="balloon" rel="135"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2568/" target="_blank">V2568</a> Both operands of the '*' operator should have the same essential type. The current types are: 'floating' and 'unsigned'.</p></div>
+<div class="balloon" rel="139"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> The value of the '(128U)' expression should not be converted to the narrower essential 'unsigned' type.</p></div>
+<div class="balloon" rel="101"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2520/" target="_blank">V2520</a> Every switch-clause should be terminated by an unconditional 'break' statement.</p></div>
+<div class="balloon" rel="150"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2568/" target="_blank">V2568</a> Both operands of the '+' operator should have the same essential type. The current types are: 'signed' and 'unsigned'.</p></div>
+<div class="balloon" rel="150"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2544/" target="_blank">V2544</a> The left and right operands of the '&' operator should not have essential 'signed' and 'signed' types respectively. Consider inspecting operands: left - '((raw_data[0] << 8) + raw_data[1])', right - '0x3FFF'</p></div>
+<div class="balloon" rel="150"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> Value of the expression should not be converted from the essential 'signed' type to the essential 'unsigned' type.</p></div>
+<div class="balloon" rel="154"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> The value of the '(14745U)' expression should not be converted from the essential 'unsigned' type to the essential 'floating' type.</p></div>
+<div class="balloon" rel="155"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> The value of the '(1638U)' expression should not be converted from the essential 'unsigned' type to the essential 'floating' type.</p></div>
+<div class="balloon" rel="156"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> The value of the 'OUT_U16' expression should not be converted from the essential 'unsigned' type to the essential 'floating' type.</p></div>
+<div class="balloon" rel="160"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> The value of the '(1U)' expression should not be converted to the narrower essential 'unsigned' type.</p></div>
+<div class="balloon" rel="216"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'pressure_pa'.</p></div>
+<div class="balloon" rel="216"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'sensor'.</p></div>
+<div class="balloon" rel="216"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'temperature_c'.</p></div>
+<div class="balloon" rel="223"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'pressure_pa'.</p></div>
+<div class="balloon" rel="223"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'sensor'.</p></div>
+<div class="balloon" rel="223"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'temperature_c'.</p></div>
 
 <link rel="stylesheet" href="highlight.css">
 <script src="highlight.pack.js"></script>
