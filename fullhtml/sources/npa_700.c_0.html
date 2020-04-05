@@ -2,7 +2,7 @@
 <html>
 <head>
 
-  <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <title>npa_700.c</title>
 
   <link rel="stylesheet" href="../style.css"/>
@@ -59,39 +59,52 @@
 <a name="ln46">    return ret_code;</a>
 <a name="ln47">}</a>
 <a name="ln48"> </a>
-<a name="ln49">npa_ret_t npa_read_trigger (const npa_ctx_t * const sensor)</a>
+<a name="ln49">npa_ret_t npa_sample_trigger (const npa_ctx_t * const sensor)</a>
 <a name="ln50">{</a>
 <a name="ln51">    npa_ret_t ret_code = npa_ctx_check (sensor);</a>
 <a name="ln52"> </a>
 <a name="ln53">    if (NPA_SUCCESS == ret_code)</a>
 <a name="ln54">    {</a>
-<a name="ln55">        ret_code |= NPA_ERR_IMPL;</a>
-<a name="ln56">    }</a>
-<a name="ln57"> </a>
-<a name="ln58">    return ret_code;</a>
-<a name="ln59">}</a>
-<a name="ln60"> </a>
-<a name="ln61">npa_ret_t npa_read_pressure (const npa_ctx_t * const sensor,</a>
-<a name="ln62">                             float * const pressure_pa)</a>
-<a name="ln63">{</a>
-<a name="ln64">    return NPA_ERR_IMPL;</a>
-<a name="ln65">}</a>
-<a name="ln66"> </a>
-<a name="ln67">npa_ret_t npa_read_pressure_temp_lowres (const npa_ctx_t * const sensor,</a>
-<a name="ln68">        float * const pressure_pa,</a>
-<a name="ln69">        float * const temperature_c)</a>
-<a name="ln70">{</a>
-<a name="ln71">    return NPA_ERR_IMPL;</a>
+<a name="ln55">        /*</a>
+<a name="ln56">        This command wakes up the sensor and starts an internal measurement cycle.</a>
+<a name="ln57">        When the measurements are made and the associated calculations are completed,</a>
+<a name="ln58">        the corrected values of pressure and temperature are written to the output</a>
+<a name="ln59">        register. The sensor then returns to ‘sleep mode’. The values in the output</a>
+<a name="ln60">        register can then be read using the Data Fetch commands shown in section 4.4.</a>
+<a name="ln61"> </a>
+<a name="ln62">        The same wake up function as the Read_MR command can also be accomplished by using</a>
+<a name="ln63">        the Read_DF2 or Read_DF3 commands described in section 4.4 and ignoring the</a>
+<a name="ln64">        “stale” data that will be returned.</a>
+<a name="ln65"> </a>
+<a name="ln66">        - Application guide p.15</a>
+<a name="ln67">        */</a>
+<a name="ln68">        ret_code |= sensor-&gt;read (sensor-&gt;npa_addr, NULL, 0);</a>
+<a name="ln69">    }</a>
+<a name="ln70"> </a>
+<a name="ln71">    return ret_code;</a>
 <a name="ln72">}</a>
 <a name="ln73"> </a>
-<a name="ln74">npa_ret_t npa_read_pressure_temp_hires (const npa_ctx_t * const sensor,</a>
-<a name="ln75">                                        float * const pressure_pa,</a>
-<a name="ln76">                                        float * const temperature_c)</a>
-<a name="ln77">{</a>
-<a name="ln78">    return NPA_ERR_IMPL;</a>
-<a name="ln79">}</a>
-<a name="ln80"> </a>
-<a name="ln81">/** @} */</a>
+<a name="ln74">npa_ret_t npa_read_pressure (const npa_ctx_t * const sensor,</a>
+<a name="ln75">                             float * const pressure_pa)</a>
+<a name="ln76">{</a>
+<a name="ln77">    return NPA_ERR_IMPL;</a>
+<a name="ln78">}</a>
+<a name="ln79"> </a>
+<a name="ln80">npa_ret_t npa_read_pressure_temp_lowres (const npa_ctx_t * const sensor,</a>
+<a name="ln81">        float * const pressure_pa,</a>
+<a name="ln82">        float * const temperature_c)</a>
+<a name="ln83">{</a>
+<a name="ln84">    return NPA_ERR_IMPL;</a>
+<a name="ln85">}</a>
+<a name="ln86"> </a>
+<a name="ln87">npa_ret_t npa_read_pressure_temp_hires (const npa_ctx_t * const sensor,</a>
+<a name="ln88">                                        float * const pressure_pa,</a>
+<a name="ln89">                                        float * const temperature_c)</a>
+<a name="ln90">{</a>
+<a name="ln91">    return NPA_ERR_IMPL;</a>
+<a name="ln92">}</a>
+<a name="ln93"> </a>
+<a name="ln94">/** @} */</a>
 
 </code></pre>
 <div class="balloon" rel="31"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2544/" target="_blank">V2544</a> The left and right operands of the '|=' operator should not have essential 'character' and 'signed' types respectively. Consider inspecting operands: left - 'ret_code', right - '(- 4)'</p></div>
@@ -101,16 +114,15 @@
 <div class="balloon" rel="39"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2544/" target="_blank">V2544</a> The left and right operands of the '|=' operator should not have essential 'character' and 'signed' types respectively. Consider inspecting operands: left - 'ret_code', right - '(- 4)'</p></div>
 <div class="balloon" rel="39"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2568/" target="_blank">V2568</a> Both operands of the '|=' operator should have the same essential type. The current types are: 'character' and 'signed'.</p></div>
 <div class="balloon" rel="53"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2568/" target="_blank">V2568</a> Both operands of the '==' operator should have the same essential type. The current types are: 'signed' and 'character'.</p></div>
-<div class="balloon" rel="55"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2544/" target="_blank">V2544</a> The left and right operands of the '|=' operator should not have essential 'character' and 'signed' types respectively. Consider inspecting operands: left - 'ret_code', right - '(- 8)'</p></div>
-<div class="balloon" rel="55"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2568/" target="_blank">V2568</a> Both operands of the '|=' operator should have the same essential type. The current types are: 'character' and 'signed'.</p></div>
-<div class="balloon" rel="61"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'pressure_pa'.</p></div>
-<div class="balloon" rel="61"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'sensor'.</p></div>
-<div class="balloon" rel="67"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'pressure_pa'.</p></div>
-<div class="balloon" rel="67"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'sensor'.</p></div>
-<div class="balloon" rel="67"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'temperature_c'.</p></div>
+<div class="balloon" rel="68"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2544/" target="_blank">V2544</a> The left and right operands of the '|=' operator should not have essential 'character' and 'character' types respectively. Consider inspecting operands: left - 'ret_code', right - 'sensor->read(sensor->npa_addr, NULL, 0)'</p></div>
 <div class="balloon" rel="74"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'pressure_pa'.</p></div>
 <div class="balloon" rel="74"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'sensor'.</p></div>
-<div class="balloon" rel="74"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'temperature_c'.</p></div>
+<div class="balloon" rel="80"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'pressure_pa'.</p></div>
+<div class="balloon" rel="80"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'sensor'.</p></div>
+<div class="balloon" rel="80"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'temperature_c'.</p></div>
+<div class="balloon" rel="87"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'pressure_pa'.</p></div>
+<div class="balloon" rel="87"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'sensor'.</p></div>
+<div class="balloon" rel="87"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2537/" target="_blank">V2537</a> Functions should not have unused parameters. Consider inspecting the parameter: 'temperature_c'.</p></div>
 
 <link rel="stylesheet" href="highlight.css">
 <script src="highlight.pack.js"></script>
