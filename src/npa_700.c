@@ -200,6 +200,11 @@ npa_ret_t npa_read_pressure (const npa_ctx_t * const sensor,
 {
     npa_ret_t ret_code = npa_ctx_check (sensor);
 
+    if (NULL == pressure_pa)
+    {
+        ret_code |= NPA_ERR_NULL;
+    }
+
     if (NPA_SUCCESS == ret_code)
     {
         // Initialize raw data as alll bits set, as it sets internal error code on
