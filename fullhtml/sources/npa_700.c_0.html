@@ -63,23 +63,23 @@
 <a name="ln50">static npa_ret_t parse_status (const uint8_t data)</a>
 <a name="ln51">{</a>
 <a name="ln52">    npa_ret_t ret_code = NPA_SUCCESS;</a>
-<a name="ln53">    uint8_t status_bits = data &gt;&gt; 6;</a>
+<a name="ln53">    uint8_t status_bits = data &gt;&gt; 6U;</a>
 <a name="ln54"> </a>
 <a name="ln55">    switch (status_bits)</a>
 <a name="ln56">    {</a>
-<a name="ln57">        case 0:</a>
+<a name="ln57">        case 0U:</a>
 <a name="ln58">            // No action needed</a>
 <a name="ln59">            break;</a>
 <a name="ln60"> </a>
-<a name="ln61">        case 1:</a>
+<a name="ln61">        case 1U:</a>
 <a name="ln62">            // Configuration not supported by this driver, configuration mode is always error.</a>
 <a name="ln63">            ret_code |= NPA_ERR_MODE;</a>
 <a name="ln64">            break;</a>
 <a name="ln65"> </a>
-<a name="ln66">        case 2:</a>
+<a name="ln66">        case 2U:</a>
 <a name="ln67">            ret_code |= NPA_WARN_OLD;</a>
 <a name="ln68"> </a>
-<a name="ln69">        case 3:</a>
+<a name="ln69">        case 3U:</a>
 <a name="ln70">        default:</a>
 <a name="ln71">            ret_code |= NPA_ERR_FATAL;</a>
 <a name="ln72">    }</a>
@@ -115,37 +115,37 @@
 <a name="ln102">    {</a>
 <a name="ln103">        case NPA_700_02WD:</a>
 <a name="ln104">            *Pmax = NPA_02WD_SCALE_PA;</a>
-<a name="ln105">            *Pmin = -1.0f * NPA_02WD_SCALE_PA;</a>
+<a name="ln105">            *Pmin = -1.0F * NPA_02WD_SCALE_PA;</a>
 <a name="ln106">            break;</a>
 <a name="ln107"> </a>
 <a name="ln108">        case NPA_700_05WD:</a>
 <a name="ln109">            *Pmax = NPA_05WD_SCALE_PA;</a>
-<a name="ln110">            *Pmin = -1.0f * NPA_05WD_SCALE_PA;</a>
+<a name="ln110">            *Pmin = -1.0F * NPA_05WD_SCALE_PA;</a>
 <a name="ln111">            break;</a>
 <a name="ln112"> </a>
 <a name="ln113">        case NPA_700_10WD:</a>
 <a name="ln114">            *Pmax = NPA_10WD_SCALE_PA;</a>
-<a name="ln115">            *Pmin = -1.0f * NPA_10WD_SCALE_PA;</a>
+<a name="ln115">            *Pmin = -1.0F * NPA_10WD_SCALE_PA;</a>
 <a name="ln116">            break;</a>
 <a name="ln117"> </a>
 <a name="ln118">        case NPA_700_001D:</a>
 <a name="ln119">            *Pmax = NPA_001D_SCALE_PA;</a>
-<a name="ln120">            *Pmin = -1.0f * NPA_001D_SCALE_PA;</a>
+<a name="ln120">            *Pmin = -1.0F * NPA_001D_SCALE_PA;</a>
 <a name="ln121">            break;</a>
 <a name="ln122"> </a>
 <a name="ln123">        case NPA_700_005D:</a>
 <a name="ln124">            *Pmax = NPA_005D_SCALE_PA;</a>
-<a name="ln125">            *Pmin = -1.0f * NPA_005D_SCALE_PA;</a>
+<a name="ln125">            *Pmin = -1.0F * NPA_005D_SCALE_PA;</a>
 <a name="ln126">            break;</a>
 <a name="ln127"> </a>
 <a name="ln128">        case NPA_700_015D:</a>
 <a name="ln129">            *Pmax = NPA_015D_SCALE_PA;</a>
-<a name="ln130">            *Pmin = -1.0f * NPA_015D_SCALE_PA;</a>
+<a name="ln130">            *Pmin = -1.0F * NPA_015D_SCALE_PA;</a>
 <a name="ln131">            break;</a>
 <a name="ln132"> </a>
 <a name="ln133">        case NPA_700_030D:</a>
 <a name="ln134">            *Pmax = NPA_030D_SCALE_PA;</a>
-<a name="ln135">            *Pmin = -1.0f * NPA_030D_SCALE_PA;</a>
+<a name="ln135">            *Pmin = -1.0F * NPA_030D_SCALE_PA;</a>
 <a name="ln136">            break;</a>
 <a name="ln137"> </a>
 <a name="ln138">        default:</a>
@@ -160,10 +160,10 @@
 <a name="ln147">{</a>
 <a name="ln148">    npa_ret_t ret_code = NPA_SUCCESS;</a>
 <a name="ln149">    // Mask status bits out</a>
-<a name="ln150">    const uint16_t OUT_U16 = ( (raw_data[0] &lt;&lt; 8) + raw_data[1]) &amp; 0x3FFF;</a>
+<a name="ln150">    const uint16_t OUT_U16 = ( (raw_data[0U] &lt;&lt; 8U) + raw_data[1U]) &amp; 0x3FFFU;</a>
 <a name="ln151">    // Use floats in calculation</a>
-<a name="ln152">    float Pmin = 0;</a>
-<a name="ln153">    float Pmax = 0;</a>
+<a name="ln152">    float Pmin = 0.0F;</a>
+<a name="ln153">    float Pmax = 0.0F;</a>
 <a name="ln154">    const float OUTmax = NPA_PRES_MAX_NONSAT;</a>
 <a name="ln155">    const float OUTmin = NPA_PRES_MIN_NONSAT;</a>
 <a name="ln156">    const float OUT = OUT_U16;</a>
@@ -202,7 +202,7 @@
 <a name="ln189"> </a>
 <a name="ln190">        - Application guide p.15</a>
 <a name="ln191">        */</a>
-<a name="ln192">        ret_code |= sensor-&gt;read (sensor-&gt;npa_addr, NULL, 0);</a>
+<a name="ln192">        ret_code |= sensor-&gt;read (sensor-&gt;npa_addr, NULL, 0U);</a>
 <a name="ln193">    }</a>
 <a name="ln194"> </a>
 <a name="ln195">    return ret_code;</a>
@@ -220,11 +220,11 @@
 <a name="ln207"> </a>
 <a name="ln208">    if (NPA_SUCCESS == ret_code)</a>
 <a name="ln209">    {</a>
-<a name="ln210">        // Initialize raw data as alll bits set, as it sets internal error code on</a>
+<a name="ln210">        // Initialize raw data as all bits set, as it sets internal error code on</a>
 <a name="ln211">        // by default.</a>
-<a name="ln212">        uint8_t raw_data[2] = { 0xFF, 0xFF };</a>
-<a name="ln213">        ret_code |= sensor-&gt;read (sensor-&gt;npa_addr, raw_data, 2);</a>
-<a name="ln214">        ret_code |= parse_status (raw_data[0]);</a>
+<a name="ln212">        uint8_t raw_data[2U] = { 0xFFU, 0xFFU };</a>
+<a name="ln213">        ret_code |= sensor-&gt;read (sensor-&gt;npa_addr, raw_data, sizeof (raw_data));</a>
+<a name="ln214">        ret_code |= parse_status (raw_data[0U]);</a>
 <a name="ln215">        ret_code |= parse_value (sensor-&gt;model, raw_data, pressure_pa);</a>
 <a name="ln216">    }</a>
 <a name="ln217"> </a>
@@ -251,9 +251,12 @@
 <div class="balloon" rel="32"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> The value of the '((128U) + 4U)' expression should not be converted to the narrower essential 'unsigned' type.</p></div>
 <div class="balloon" rel="36"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> The value of the '((128U) + 4U)' expression should not be converted to the narrower essential 'unsigned' type.</p></div>
 <div class="balloon" rel="40"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> The value of the '((128U) + 4U)' expression should not be converted to the narrower essential 'unsigned' type.</p></div>
-<div class="balloon" rel="53"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> The value of the 'data >> 6' expression should not be converted from the essential 'signed' type to the essential 'unsigned' type.</p></div>
+<div class="balloon" rel="53"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> The value of the 'data >> 6U' expression should not be converted from the essential 'signed' type to the essential 'unsigned' type.</p></div>
+<div class="balloon" rel="61"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> Constant expression of the case label should not be converted to the narrower essential 'unsigned' type.</p></div>
 <div class="balloon" rel="63"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> The value of the '((128U) + 32U)' expression should not be converted to the narrower essential 'unsigned' type.</p></div>
+<div class="balloon" rel="66"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> Constant expression of the case label should not be converted to the narrower essential 'unsigned' type.</p></div>
 <div class="balloon" rel="67"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> The value of the '(2U)' expression should not be converted to the narrower essential 'unsigned' type.</p></div>
+<div class="balloon" rel="69"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> Constant expression of the case label should not be converted to the narrower essential 'unsigned' type.</p></div>
 <div class="balloon" rel="71"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> The value of the '(128U)' expression should not be converted to the narrower essential 'unsigned' type.</p></div>
 <div class="balloon" rel="67"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v796/" target="_blank">V796</a> It is possible that 'break' statement is missing in switch statement.</p></div>
 <div class="balloon" rel="55"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2520/" target="_blank">V2520</a> Every switch-clause should be terminated by an unconditional 'break' statement.</p></div>
@@ -283,8 +286,9 @@
 <div class="balloon" rel="139"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> The value of the '(128U)' expression should not be converted to the narrower essential 'unsigned' type.</p></div>
 <div class="balloon" rel="101"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2520/" target="_blank">V2520</a> Every switch-clause should be terminated by an unconditional 'break' statement.</p></div>
 <div class="balloon" rel="150"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2568/" target="_blank">V2568</a> Both operands of the '+' operator should have the same essential type. The current types are: 'signed' and 'unsigned'.</p></div>
-<div class="balloon" rel="150"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2544/" target="_blank">V2544</a> The left and right operands of the '&' operator should not have essential 'signed' and 'signed' types respectively. Consider inspecting operands: left - '((raw_data[0] << 8) + raw_data[1])', right - '0x3FFF'</p></div>
-<div class="balloon" rel="150"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> Value of the expression should not be converted from the essential 'signed' type to the essential 'unsigned' type.</p></div>
+<div class="balloon" rel="150"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2568/" target="_blank">V2568</a> Both operands of the '&' operator should have the same essential type. The current types are: 'signed' and 'unsigned'.</p></div>
+<div class="balloon" rel="150"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2544/" target="_blank">V2544</a> The left operand '((raw_data[0U] << 8U) + raw_data[1U])' of the '&' operator should not have the essential 'signed' type.</p></div>
+<div class="balloon" rel="150"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> Value of the expression should not be converted to the narrower essential 'unsigned' type.</p></div>
 <div class="balloon" rel="154"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> The value of the '(14745U)' expression should not be converted from the essential 'unsigned' type to the essential 'floating' type.</p></div>
 <div class="balloon" rel="155"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> The value of the '(1638U)' expression should not be converted from the essential 'unsigned' type to the essential 'floating' type.</p></div>
 <div class="balloon" rel="156"><p><span style="font-size:18px">&uarr;</span> <a href="https://www.viva64.com/en/w/v2572/" target="_blank">V2572</a> The value of the 'OUT_U16' expression should not be converted from the essential 'unsigned' type to the essential 'floating' type.</p></div>

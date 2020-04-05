@@ -36,11 +36,11 @@
   </div>
 
   <table cellpadding="0" cellspacing="0" border="0" class="infotopic">
-     <tr><th id="col_info">Date:</th><td>Sun Apr  5 20:28:07 2020</td></tr>
+     <tr><th id="col_info">Date:</th><td>Sun Apr  5 20:32:21 2020</td></tr>
      <tr><th id="col_info">PVS-Studio Version:</th><td>7.06.37052.34</td></tr>
      <tr><th id="col_info">Command Line:</th><td>plog-converter -a GA\:1,2,3\;OP\:1,2,3\;CS\:1,2,3\;MISRA\:1,2,3 -t fullhtml src/npa_700.o.PVS-Studio.log -o ./doxygen/html </td></tr>
      <tr><th id="col_info">Total Warnings (GA):</th><td>1</td></tr>
-     <tr><th id="col_info">Total Warnings (MISRA):</th><td>47</td></tr>
+     <tr><th id="col_info">Total Warnings (MISRA):</th><td>51</td></tr>
   </table>
   <table cellpadding="0" cellspacing="0" border="0" class="sortable" id="sorter">
     <tr>
@@ -76,7 +76,14 @@
       <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln53">npa_700.c:53</a></td>
       <td id="col_level" style="color:#CACA00"><b>Low</b></td>
       <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2572/">V2572</td>
-      <td id="col_message">The value of the 'data &gt;&gt; 6' expression should not be converted from the essential 'signed' type to the essential 'unsigned' type.</td>
+      <td id="col_message">The value of the 'data &gt;&gt; 6U' expression should not be converted from the essential 'signed' type to the essential 'unsigned' type.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln61">npa_700.c:61</a></td>
+      <td id="col_level" style="color:#CACA00"><b>Low</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2572/">V2572</td>
+      <td id="col_message">Constant expression of the case label should not be converted to the narrower essential 'unsigned' type.</td>
     </tr>
     <tr>
       <td id="col_group">MISRA</td>
@@ -87,10 +94,24 @@
     </tr>
     <tr>
       <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln66">npa_700.c:66</a></td>
+      <td id="col_level" style="color:#CACA00"><b>Low</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2572/">V2572</td>
+      <td id="col_message">Constant expression of the case label should not be converted to the narrower essential 'unsigned' type.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
       <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln67">npa_700.c:67</a></td>
       <td id="col_level" style="color:#CACA00"><b>Low</b></td>
       <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2572/">V2572</td>
       <td id="col_message">The value of the '(2U)' expression should not be converted to the narrower essential 'unsigned' type.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln69">npa_700.c:69</a></td>
+      <td id="col_level" style="color:#CACA00"><b>Low</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2572/">V2572</td>
+      <td id="col_message">Constant expression of the case label should not be converted to the narrower essential 'unsigned' type.</td>
     </tr>
     <tr>
       <td id="col_group">MISRA</td>
@@ -299,15 +320,22 @@
       <td id="col_group">MISRA</td>
       <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln150">npa_700.c:150</a></td>
       <td id="col_level" style="color:#FFA500"><b>Medium</b></td>
+      <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2568/">V2568</td>
+      <td id="col_message">Both operands of the '&amp;' operator should have the same essential type. The current types are: 'signed' and 'unsigned'.</td>
+    </tr>
+    <tr>
+      <td id="col_group">MISRA</td>
+      <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln150">npa_700.c:150</a></td>
+      <td id="col_level" style="color:#FFA500"><b>Medium</b></td>
       <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2544/">V2544</td>
-      <td id="col_message">The left and right operands of the '&amp;' operator should not have essential 'signed' and 'signed' types respectively. Consider inspecting operands: left - '((raw_data[0] &lt;&lt; 8) + raw_data[1])', right - '0x3FFF'</td>
+      <td id="col_message">The left operand '((raw_data[0U] &lt;&lt; 8U) + raw_data[1U])' of the '&amp;' operator should not have the essential 'signed' type.</td>
     </tr>
     <tr>
       <td id="col_group">MISRA</td>
       <td id="col_file"><a target="_blank" href="sources/npa_700.c_0.html#ln150">npa_700.c:150</a></td>
       <td id="col_level" style="color:#CACA00"><b>Low</b></td>
       <td id="col_code"><a target="_blank" href="https://www.viva64.com/en/w/v2572/">V2572</td>
-      <td id="col_message">Value of the expression should not be converted from the essential 'signed' type to the essential 'unsigned' type.</td>
+      <td id="col_message">Value of the expression should not be converted to the narrower essential 'unsigned' type.</td>
     </tr>
     <tr>
       <td id="col_group">MISRA</td>
