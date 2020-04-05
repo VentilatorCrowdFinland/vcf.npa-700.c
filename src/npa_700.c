@@ -50,7 +50,7 @@ static npa_ret_t npa_ctx_check (const npa_ctx_t * const sensor)
 static npa_ret_t parse_status (const uint8_t data)
 {
     npa_ret_t ret_code = NPA_SUCCESS;
-    uint8_t status_bits = data >> 6U;
+    uint32_t status_bits = data >> 6U;
 
     switch (status_bits)
     {
@@ -65,10 +65,12 @@ static npa_ret_t parse_status (const uint8_t data)
 
         case 2U:
             ret_code |= NPA_WARN_OLD;
+            break;
 
         case 3U:
         default:
             ret_code |= NPA_ERR_FATAL;
+            break;
     }
 
     return ret_code;
@@ -137,6 +139,7 @@ static npa_ret_t get_scaling (const npa_variant_t model, float * const Pmax,
 
         default:
             ret_code |= NPA_ERR_FATAL;
+            break;
     }
 
     return ret_code;

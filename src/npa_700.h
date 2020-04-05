@@ -27,7 +27,10 @@
 /**
  * @brief Error code from NPA 700 driver.
  *
- * Values with most significant bit set (0x80) are fatal, others are warnings.
+ * Values with 8th bit (0x80) are fatal, others are warnings.
+ *
+ * Type is U32 to avoid implicit cast into narrower type when doing operations
+ * on constants [MISRA](https://www.viva64.com/en/w/v2572/).
  *
  * Value | Meaning
  * ---------------
@@ -42,7 +45,7 @@
  * 1     | Warning: Value is saturated.
  * 2     | Warning: Value is already read.
  */
-typedef uint8_t npa_ret_t;
+typedef uint32_t npa_ret_t;
 
 #define NPA_SUCCESS      (0U)   //!< Operation was successful.
 #define NPA_ERR_FATAL    (128U)  //!< Fatal error code, last bit set. 
@@ -68,13 +71,13 @@ typedef uint8_t npa_ret_t;
 #define NPA_PRES_MIN_SAT    (0U)     //!< Minimum saturated pressure counts.
 #define NPA_PRES_MIDDLE     (8192U)  //!< Middle pressure, 0-level.
 
-#define NPA_02WD_SCALE_PA   (500U)    //!< Maximum scale of NPA_02WD
-#define NPA_05WD_SCALE_PA   (1250U)   //!< Maximum scale of NPA_05WD
-#define NPA_10WD_SCALE_PA   (2490U)   //!< Maximum scale of NPA_10WD
-#define NPA_001D_SCALE_PA   (6890U)   //!< Maximum scale of NPA_001D
-#define NPA_005D_SCALE_PA   (34470U)  //!< Maximum scale of NPA_005D
-#define NPA_015D_SCALE_PA   (103420U) //!< Maximum scale of NPA_015D
-#define NPA_030D_SCALE_PA   (206840U) //!< Maximum scale of NPA_030D
+#define NPA_02WD_SCALE_PA   (500.0F)    //!< Maximum scale of NPA_02WD
+#define NPA_05WD_SCALE_PA   (1250.0F)   //!< Maximum scale of NPA_05WD
+#define NPA_10WD_SCALE_PA   (2490.0F)   //!< Maximum scale of NPA_10WD
+#define NPA_001D_SCALE_PA   (6890.0F)   //!< Maximum scale of NPA_001D
+#define NPA_005D_SCALE_PA   (34470.0F)  //!< Maximum scale of NPA_005D
+#define NPA_015D_SCALE_PA   (103420.0F) //!< Maximum scale of NPA_015D
+#define NPA_030D_SCALE_PA   (206840.0F) //!< Maximum scale of NPA_030D
 
 /**
  * @brief Write data to NPA-700.
