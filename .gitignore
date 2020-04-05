@@ -67,3 +67,6 @@ doxygen.error
 
 # Astyle backups
 *.orig
+
+# GCOV output
+*.gcov

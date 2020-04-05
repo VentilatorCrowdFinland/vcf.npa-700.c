@@ -226,7 +226,7 @@ POBJECTS=$(SOURCES:.c=.o.PVS-Studio.log)
 EXECUTABLE=npa-driver
 SONAR=npa-analysis
 
-.PHONY: clean doxygen pvs sonar
+.PHONY: clean doxygen pvs sonar astyle
 
 pvs: $(SOURCES) $(EXECUTABLE) 
 
@@ -251,6 +251,9 @@ $(SONAR): $(ANALYSIS)
 .c.a:
 # Build
 	$(CXX) $(CFLAGS) $< $(DFLAGS) $(INC_PARAMS) $(OFLAGS) -o $@
+
+astyle:
+	astyle --project=".astylerc" --recursive "src/*.c" "src/*.h" "test/*.c" "test/*.h"
 
 clean:
 	rm -f $(OBJECTS) $(IOBJECTS) $(POBJECTS)

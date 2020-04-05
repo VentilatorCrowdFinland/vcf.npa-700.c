@@ -17,7 +17,7 @@
 /**
  * @file npa_700.h
  * @author Otso Jousimaa <otso@ojousima.net>
- * @date 2020-04-04
+ * @date 2020-04-05
  * @copyright Otso Jousimaa, License Apache 2.0.
  *
  */
@@ -36,18 +36,20 @@
  * -2    | Error: I2C interface function timed out.
  * -4    | Error: NULL pointer supplied.
  * -8    | Error: Function is not implemented.
+ * -16   | Error: Invalid parameter.
  * 1     | Warning: Value is saturated.
  * 2     | Warning: Value is already read.
  */
 typedef int8_t npa_ret_t;
 
-#define NPA_SUCCESS  (0)  //!< Operation was successful.
-#define NPA_ERR_NACK (-1) //!< I2C interface did not acknowledge.
-#define NPA_ERR_TOUT (-2) //!< I2C interface timed out.
-#define NPA_ERR_NULL (-4) //!< NULL pointer supplied. 
-#define NPA_ERR_IMPL (-8) //!< Function is not implemented.
-#define NPA_WARN_SAT (1)  //!< Value is saturated.
-#define NPA_WARN_OLD (2)  //!< Value was already read, not updated.
+#define NPA_SUCCESS   (0)  //!< Operation was successful.
+#define NPA_ERR_NACK  (-1) //!< I2C interface did not acknowledge.
+#define NPA_ERR_TOUT  (-2) //!< I2C interface timed out.
+#define NPA_ERR_NULL  (-4) //!< NULL pointer supplied. 
+#define NPA_ERR_IMPL  (-8) //!< Function is not implemented.
+#define NPA_ERR_PARAM (-8) //!< Invalid parameter. 
+#define NPA_WARN_SAT  (1)  //!< Value is saturated.
+#define NPA_WARN_OLD  (2)  //!< Value was already read, not updated.
 
 /**
  * @brief Write data to NPA-700.
@@ -100,7 +102,7 @@ typedef enum
 typedef struct
 {
     const npa_write_fp write;   //!< I2C write function. Must not be NULL.
-    const npa_write_fp read;    //!< I2C read function. Must not be NULL.
+    const npa_read_fp read;    //!< I2C read function. Must not be NULL.
     const uint8_t npa_addr;     //!< I2C address of NPA-700.
     const npa_variant_t model;  //!< Model of the sensor used.
 } npa_ctx_t;

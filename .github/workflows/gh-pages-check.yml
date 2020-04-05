@@ -1,12 +1,10 @@
 # This is a basic workflow to help you get started with Actions
 
-name: GH-Pages
+name: GH-Pages-Check
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
 on:
-  push:
-    branches: [ master ]
   pull_request:
     branches: [ master ]
 
@@ -60,5 +58,5 @@ jobs:
       uses: JamesIves/github-pages-deploy-action@3.4.6
       with:
           SSH: true
-          BRANCH: gh-pages # The branch the action should deploy to.
+          BRANCH: gh-pages-check # The branch the action should deploy to.
           FOLDER: doxygen/html # The folder the action should deploy.

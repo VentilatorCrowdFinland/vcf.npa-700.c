@@ -11,10 +11,10 @@ install:
   - gem install ceedling
 
 script:
+  - build-wrapper-linux-x86-64 --out-dir bw-output make sonar
   - ceedling test:all
   - ceedling gcov:all utils:gcov
-  - gcov  -b -c build/gcov/out/*.gcno
-  - build-wrapper-linux-x86-64 --out-dir bw-output make sonar
+  - gcov -b -c build/gcov/out/*.gcno
   - sonar-scanner -Dsonar.cfamily.build-wrapper-output=bw-output
 
 addons:
